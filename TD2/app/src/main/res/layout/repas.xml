@@ -4,10 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/entree_label"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/entree"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/plat_label"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -37,4 +47,4 @@
             android:text="@string/soir"/>
 
     </RadioGroup>
-</>
+</LinearLayout>

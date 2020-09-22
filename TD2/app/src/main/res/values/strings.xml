@@ -2,10 +2,12 @@
     <string name="app_name">TD2</string>
     <string name="message">Salut tout le monde</string>
     <string name="mot_de_passe">Mot de Passe</string>
-    <string name="entree">entrée</string>
-    <string name="plat">plat</string>
+    <string name="entree">Entrée</string>
+    <string name="plat">Plat</string>
     <string name="midi">Midi</string>
     <string name="soir">Soir</string>
     <string name="fromage">Fromage</string>
     <string name="fruit">Fruit</string>
+    <string name="entree_label">Qu\'avez vous mangé en entrée ?</string>
+    <string name="plat_label">Qu\'avez vous mangé en plat ?</string>
 </resources>
