@@ -7,18 +7,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"/>
+        android:layout_centerVertical="true" />
     <Button
         android:id="@+id/button2" android:text="BTN2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_above="@id/button1"
         android:layout_toRightOf="@id/button1"/>
     <Button
         android:id="@+id/button3" android:text="BTN3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/button2"
-        android:layout_alignLeft="@id/button1"
-        android:layout_alignRight="@id/button1"/>
+        android:layout_toLeftOf="@id/button1"
+        android:layout_alignTop="@id/button1"/>
 </RelativeLayout>
