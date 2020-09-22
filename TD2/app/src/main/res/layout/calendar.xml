@@ -3,11 +3,12 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <CalendarView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"></CalendarView>
-        <LinearLayout
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+<LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -22,6 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"/>
+
         </LinearLayout>
 
 </LinearLayout>
