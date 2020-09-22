@@ -10,4 +10,8 @@
     <string name="fruit">Fruit</string>
     <string name="entree_label">Qu\'avez vous mangé en entrée ?</string>
     <string name="plat_label">Qu\'avez vous mangé en plat ?</string>
+    <string name="validate">Valider</string>
+    <string name="cancel">Annuler</string>
+    <string name="dessert_label">Selectionnez ce que vous avez mangé :</string>
+    <string name="moment">A quel moment de la journée ?</string>
 </resources>

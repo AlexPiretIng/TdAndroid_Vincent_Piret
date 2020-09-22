@@ -10,6 +10,7 @@
         android:text="@string/entree_label"/>
 
     <EditText
+        android:id="@+id/entree"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/entree"/>
@@ -20,31 +21,60 @@
         android:text="@string/plat_label"/>
 
     <EditText
+        android:id="@+id/plat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/plat"/>
-    
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dessert_label"/>
+
     <CheckBox
+        android:id="@+id/fromage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/fromage"/>
     <CheckBox
+        android:id="@+id/fruit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/fruit"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/moment"/>
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <RadioButton
+            android:id="@+id/midi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/midi"/>
         <RadioButton
+            android:id="@+id/soir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/soir"/>
 
     </RadioGroup>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/validate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/validate"/>
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"/>
+    </LinearLayout>
 </LinearLayout>
