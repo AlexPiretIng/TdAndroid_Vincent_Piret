@@ -4,4 +4,8 @@
     <string name="mot_de_passe">Mot de Passe</string>
     <string name="entree">entrée</string>
     <string name="plat">plat</string>
+    <string name="midi">Midi</string>
+    <string name="soir">Soir</string>
+    <string name="fromage">Fromage</string>
+    <string name="fruit">Fruit</string>
 </resources>
