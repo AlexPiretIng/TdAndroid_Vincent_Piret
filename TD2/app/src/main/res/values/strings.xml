@@ -14,4 +14,11 @@
     <string name="cancel">Annuler</string>
     <string name="dessert_label">Selectionnez ce que vous avez mangé :</string>
     <string name="moment">A quel moment de la journée ?</string>
+    <string name="temperature">Température</string>
+    <string name="vent">Vitesse du vent</string>
+    <string-array name="temps">
+        <item>"Dégagé"</item>
+        <item>"Couvert"</item>
+        <item>"Pluvieux"</item>
+    </string-array>
 </resources>

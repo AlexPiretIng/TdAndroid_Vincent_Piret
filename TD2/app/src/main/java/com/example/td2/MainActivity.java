@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,12 +19,21 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox fromage;
     private CheckBox fruit;
     private RadioGroup moment;
+    private Spinner spintemps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.repas);
+        setContentView(R.layout.meteo);
+        //Pour meteo.xml
+        spintemps = (Spinner) findViewById(R.id.spinnertemps);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.temps));
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spintemps.setAdapter(adapter);
 
+
+        /*
+        // Pour repas.xml
         annuler = (Button) findViewById(R.id.cancel);
         entree = (EditText) findViewById(R.id.entree);
         plat = (EditText) findViewById(R.id.plat);
@@ -39,6 +50,6 @@ public class MainActivity extends AppCompatActivity {
                 fruit.setChecked(false);
                 moment.clearCheck();
             }
-        });
+        });*/
     }
 }
