@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView roll_TextView = (TextView) findViewById(R.id.TextView_Roll);
         final TextView roll_TextView2 = (TextView) findViewById(R.id.TextView_Roll2);
 
+
         roll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,13 +33,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public String Random(){
+        EditText faces = (EditText) findViewById(R.id.Faces);
         int roll=0;
         int min = 1;
-        int max = 6;
+        int max = Integer.parseInt(faces.getText().toString());
+        String res="";
 
-        Random r = new Random();
-        roll = r.nextInt(max-min+1)+min;
-        String res = String.valueOf(roll);
+        if (max > 0){
+            Random r = new Random();
+            roll = r.nextInt(max-min+1)+min;
+            res = String.valueOf(roll);
+        }
         return res;
 
     }
