@@ -21,13 +21,19 @@ public class MainActivity extends AppCompatActivity {
         Button roll = (Button) findViewById(R.id.roll_button);
         final TextView roll_TextView = (TextView) findViewById(R.id.TextView_Roll);
         final TextView roll_TextView2 = (TextView) findViewById(R.id.TextView_Roll2);
+        EditText faces = (EditText) findViewById(R.id.Faces);
+        //roll.setEnabled(false);
 
 
         roll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                roll_TextView.setText(Random());
-                roll_TextView2.setText(Random());
+                EditText faces = (EditText) findViewById(R.id.Faces);
+                if (faces.length() != 0) {
+
+                    roll_TextView.setText(Random());
+                    roll_TextView2.setText(Random());
+                }
             }
         });
     }

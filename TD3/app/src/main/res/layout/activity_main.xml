@@ -26,7 +26,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/TextView_Roll2"
-        android:textSize="50sp"/>
+        android:textSize="50sp" />
 
     <Button
         android:id="@+id/roll_button"
@@ -43,7 +43,6 @@
         android:layout_height="wrap_content"
         android:hint="@string/Nb_Faces"
         android:id="@+id/Faces"
-        android:layout_marginTop="40dp"
         app:layout_constraintBottom_toTopOf="@id/roll_button"
         app:layout_constraintTop_toBottomOf="@id/TextView_Roll"
         app:layout_constraintLeft_toLeftOf="parent"
