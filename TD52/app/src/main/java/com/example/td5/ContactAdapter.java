@@ -43,7 +43,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         lastNameTextView.setText(contact.getNom());
 
         ImageView photoView = holder.photoView;
-        Glide.with().load(contact.getImageUrl()).into(photoView);
+        Glide.with(photoView.getContext()).load(contact.getImageUrl()).into(photoView);
     }
 
     @Override
