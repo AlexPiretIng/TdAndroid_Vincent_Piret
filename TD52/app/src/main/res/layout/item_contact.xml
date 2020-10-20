@@ -12,13 +12,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/firstname"
-            android:text=""
+            android:text="@string/prenom"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/lastname"
-            android:text=""
+            android:text="@string/nom"
             />
 
     </LinearLayout>
