@@ -28,7 +28,7 @@ public class ContactActivity extends AppCompatActivity {
         contacts.add(new Contact("Zinedine","Zidane", "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.tf1.fr%2Fdossier%2Fjean-pierre-pernaut&psig=AOvVaw2A8RMyzHcTWBNCKXyZ8hBl&ust=1603283776975000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKCO3dKXw-wCFQAAAAAdAAAAABAD"));
         contacts.add(new Contact("Yannick","Noah", "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.tf1.fr%2Fdossier%2Fjean-pierre-pernaut&psig=AOvVaw2A8RMyzHcTWBNCKXyZ8hBl&ust=1603283776975000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKCO3dKXw-wCFQAAAAAdAAAAABAD"));
 
-        ContactAdapter adapter = new ContactAdapter(contacts);
+        ContactAdapter adapter = new ContactAdapter(contacts,this);
 
         rvContacts.setAdapter(adapter);
 
