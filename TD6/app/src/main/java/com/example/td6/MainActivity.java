@@ -2,7 +2,11 @@ package com.example.td6;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -20,25 +24,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        GithubService githubService = new Retrofit.Builder()
-                .baseUrl(GithubService.ENDPOINT)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(GithubService.class);
+        TextView input = (TextView)findViewById(R.id.nom);
+        Button sub = (Button)findViewById(R.id.submit);
 
-        githubService.listRepos("adrienbusin").enqueue(new Callback<List<Repo>>() {
+        sub.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
-                afficherRepos(response.body());
-            }
-            public void onFailure(Call<List<Repo>> call, Throwable t) {
-
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+                intent.putExtra("login", input.getText().toString());
+                startActivity(intent);
             }
         });
-    }
-
-    public void afficherRepos(List<Repo> repos) {
-        Toast.makeText(this,"nombre de dépots : "+repos.size(), Toast.LENGTH_SHORT).show();
     }
 
 }
