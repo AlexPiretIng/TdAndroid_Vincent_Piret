@@ -9,17 +9,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Callback;
 
 public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.ViewHolder> {
 
-    public List<Repo> mRepo;
+    public ArrayList<Repo> mRepo;
 
-    public RepoAdapter(List<Repo> mRepo, Callback<List<Repo>> callback){
-        this.mRepo = mRepo;
+    public RepoAdapter() {
+        new ArrayList<>();
     }
+
 
     @NonNull
     @Override

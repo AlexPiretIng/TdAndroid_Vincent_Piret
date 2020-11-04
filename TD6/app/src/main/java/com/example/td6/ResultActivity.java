@@ -1,11 +1,13 @@
 package com.example.td6;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.GridLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,16 +21,21 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ResultActivity extends AppCompatActivity {
 
-    List<Repo> repo = new ArrayList();
+    RecyclerView rvRepo;
+    private RepoAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        RecyclerView rvRepo =(RecyclerView)findViewById(R.id.rvRepo);
         String login = "";
         Intent intent = getIntent();
+        rvRepo = (RecyclerView)findViewById(R.id.rvRepo);
+        adapter = new RepoAdapter();
+        rvRepo.setAdapter(adapter);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 4);
+        rvRepo.setLayoutManager(layoutManager);
 
         if (intent.hasExtra("login")) {
             login = intent.getStringExtra("login");
