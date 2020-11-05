@@ -17,7 +17,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class LoadingActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "Pokedex";
 
@@ -46,10 +46,6 @@ public class LoadingActivity extends AppCompatActivity {
                     PokemonRequest pokemonRequest = response.body();
                     ArrayList<Pokemon> listPokemon = pokemonRequest.getResults();
 
-                    for (int i = 0; i < listPokemon.size(); i++){
-                        Pokemon p = listPokemon.get(i);
-                        Log.i(TAG, "Poke " + p.getName());
-                    }
                 }else {
                     Log.e(TAG,"on Response" + response.body());
                 }
