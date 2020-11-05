@@ -16,12 +16,18 @@ import retrofit2.Callback;
 
 public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.ViewHolder> {
 
-    public ArrayList<Repo> mRepo;
+    private List<Repo> mRepo;
+    private Context mContext;
 
-    public RepoAdapter() {
-        new ArrayList<>();
+    public RepoAdapter(List<Repo> repo, Context context) {
+        mRepo = repo;
+        mContext = context;
     }
 
+    public void setRepoList(List<Repo> repoList) {
+        this.mRepo = repoList;
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
@@ -53,7 +59,10 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return mRepo.size();
+        if (mRepo != null){
+            return mRepo.size();
+        }
+        return 0;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

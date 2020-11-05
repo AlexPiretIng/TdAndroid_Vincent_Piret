@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.GridLayout;
+import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -22,7 +23,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ResultActivity extends AppCompatActivity {
 
     RecyclerView rvRepo;
-    private RepoAdapter adapter;
+    Retrofit mRetrofit;
+    private static final String TAG = "Repo";
+    List<Repo> mRepoList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,46 +34,55 @@ public class ResultActivity extends AppCompatActivity {
 
         String login = "";
         Intent intent = getIntent();
-        rvRepo = (RecyclerView)findViewById(R.id.rvRepo);
-        adapter = new RepoAdapter();
-        rvRepo.setAdapter(adapter);
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 4);
-        rvRepo.setLayoutManager(layoutManager);
 
         if (intent.hasExtra("login")) {
             login = intent.getStringExtra("login");
         }
 
-        GithubService githubService = new Retrofit.Builder()
+        rvRepo = (RecyclerView)findViewById(R.id.rvRepo);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        rvRepo.setLayoutManager(layoutManager);
+        RepoAdapter adapter = new RepoAdapter(mRepoList, this);
+        rvRepo.setAdapter(adapter);
+
+        mRetrofit = new Retrofit.Builder()
                 .baseUrl(GithubService.ENDPOINT)
                 .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(GithubService.class);
+                .build();
+
+        GithubService githubService = mRetrofit.create(GithubService.class);
 
         githubService.listRepos("adrienbusin").enqueue(new Callback<List<Repo>>() {
             @Override
             public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
-                afficherRepos(response.body());
+                //afficherRepos(response.body());
             }
             public void onFailure(Call<List<Repo>> call, Throwable t) {
 
             }
         });
 
-        githubService.searchRepos(login).enqueue(new Callback<List<Repo>>() {
-            @Override
-            public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
-               
-            }
+       githubService.searchRepos("7WondersDuel").enqueue(new Callback<List<Repo>>() {
+           @Override
+           public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
+               if (response.isSuccessful()){
+                   List<Repo> repoList = response.body();
+                   afficher();
+               }
+           }
 
-            @Override
-            public void onFailure(Call<List<Repo>> call, Throwable t) {
+           @Override
+           public void onFailure(Call<List<Repo>> call, Throwable t) {
 
-            }
-        });
+           }
+       });
     }
 
     public void afficherRepos(List<Repo> repos) {
         Toast.makeText(this,"nombre de dépots : "+repos.size(), Toast.LENGTH_SHORT).show();
+    }
+
+    public void afficher() {
+        Toast.makeText(this,"TEST ", Toast.LENGTH_SHORT).show();
     }
 }
