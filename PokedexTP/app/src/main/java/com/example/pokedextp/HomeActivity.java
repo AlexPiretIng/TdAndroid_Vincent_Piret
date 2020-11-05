@@ -1,6 +1,8 @@
 package com.example.pokedextp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -21,12 +23,21 @@ public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "Pokedex";
 
+    private RecyclerView rvPoke;
+    private PokedexAdapter mPokedexAdapter;
+
     Retrofit retrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
+
+        rvPoke = (RecyclerView)findViewById(R.id.rvPokemon);
+        mPokedexAdapter = new PokedexAdapter();
+        rvPoke.setAdapter(mPokedexAdapter);
+        GridLayoutManager layoutManager = new GridLayoutManager(this,3);
+        rvPoke.setLayoutManager(layoutManager);
 
        retrofit = new Retrofit.Builder()
                             .baseUrl(PokeAPI.URL)
