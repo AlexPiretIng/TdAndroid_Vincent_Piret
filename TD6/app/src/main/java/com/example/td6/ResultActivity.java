@@ -66,8 +66,7 @@ public class ResultActivity extends AppCompatActivity {
            @Override
            public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
                if (response.isSuccessful()){
-                   List<Repo> repoList = response.body();
-                   afficher();
+
                }
            }
 
@@ -80,9 +79,5 @@ public class ResultActivity extends AppCompatActivity {
 
     public void afficherRepos(List<Repo> repos) {
         Toast.makeText(this,"nombre de dépots : "+repos.size(), Toast.LENGTH_SHORT).show();
-    }
-
-    public void afficher() {
-        Toast.makeText(this,"TEST ", Toast.LENGTH_SHORT).show();
     }
 }
