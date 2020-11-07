@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.pokedextp.api.PokeAPI;
 import com.example.pokedextp.models.Pokemon;
@@ -27,6 +29,9 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView rvPoke;
     private PokedexAdapter mPokedexAdapter;
 
+    private ImageView gen1;
+    private ImageView gen2;
+
     Retrofit retrofit;
 
     public static Context context;
@@ -38,6 +43,15 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
+        gen1 = (ImageView)findViewById(R.id.gen1);
+        //gen2 = (ImageView)findViewById(R.id.gen2);
+
+        gen1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gen1.setImageResource(R.drawable.pok);
+            }
+        });
         context = getApplicationContext();
 
        retrofit = new Retrofit.Builder()

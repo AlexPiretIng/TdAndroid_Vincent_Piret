@@ -5,9 +5,22 @@
     android:layout_height="match_parent"
     android:background="@color/teal_700">
 
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/gen1"
+        android:src="@drawable/poke"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginLeft="5dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPokemon"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@id/gen1"
+        android:layout_toRightOf="@id/gen1" />
 
 </RelativeLayout>
