@@ -54,25 +54,23 @@ public class ResultActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
                 mRepoList = response.body();
+                adapter.notifyDataSetChanged();
             }
             public void onFailure(Call<List<Repo>> call, Throwable t) {
 
             }
         });
 
-        adapter = new RepoAdapter(mRepoList, this);
-        rvRepo.setAdapter(adapter);
-
-        githubService.searchRepos("picasso").enqueue(new Callback<List<Repo>>() {
+        githubService.searchRepos("picasso").enqueue(new Callback<List<Repos>>() {
             @Override
-            public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
+            public void onResponse(Call<List<Repos>> call, Response<List<Repos>> response) {
                 if (response.isSuccessful()){
 
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Repo>> call, Throwable t) {
+            public void onFailure(Call<List<Repos>> call, Throwable t) {
 
             }
         });
