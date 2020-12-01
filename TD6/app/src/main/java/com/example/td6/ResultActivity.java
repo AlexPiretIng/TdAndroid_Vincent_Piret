@@ -48,12 +48,18 @@ public class ResultActivity extends AppCompatActivity {
         githubService.listRepos("adrienbusin").enqueue(new Callback<List<Repo>>() {
             @Override
             public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
+<<<<<<< HEAD
                 afficherRepos(response.body());
+=======
+                mRepoList = response.body();
+                adapter.notifyDataSetChanged();
+>>>>>>> master
             }
             public void onFailure(Call<List<Repo>> call, Throwable t) {
 
             }
         });
+<<<<<<< HEAD
         githubService.searchRepos("picasso").enqueue(new Callback<Repos>() {
             @Override
             public void onResponse(Call<Repos> call, Response<Repos> response) {
@@ -62,6 +68,19 @@ public class ResultActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Repos> call, Throwable t) {
+=======
+
+        githubService.searchRepos("picasso").enqueue(new Callback<List<Repos>>() {
+            @Override
+            public void onResponse(Call<List<Repos>> call, Response<List<Repos>> response) {
+                if (response.isSuccessful()){
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Repos>> call, Throwable t) {
+>>>>>>> master
 
             }
         });
