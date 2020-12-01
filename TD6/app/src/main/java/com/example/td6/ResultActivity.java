@@ -46,7 +46,7 @@ public class ResultActivity extends AppCompatActivity {
                 .create(GithubService.class);
 
 
-        githubService.e.searchRepos("AndroidEILCO").enqueue(new Callback<Repos>() {
+        githubService.searchRepos("AndroidEILCO").enqueue(new Callback<Repos>() {
             @Override
             public void onResponse(Call<Repos> call, Response<Repos> response) {
                 afficherReposit(response.body());
@@ -54,7 +54,7 @@ public class ResultActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Repos> call, Throwable t) {
-                
+
             }
         });
     }
