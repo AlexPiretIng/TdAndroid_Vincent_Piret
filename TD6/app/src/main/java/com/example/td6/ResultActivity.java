@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Adapter;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -23,8 +24,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ResultActivity extends AppCompatActivity {
 
     RecyclerView rvRepo;
+    LinearLayoutManager layoutManager;
     private static final String TAG = "Repo";
-    List<Repo> mRepoList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +39,6 @@ public class ResultActivity extends AppCompatActivity {
             login = intent.getStringExtra("login");
         }
 
-        rvRepo = (RecyclerView)findViewById(R.id.rvRepo);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        rvRepo.setLayoutManager(layoutManager);
-        RepoAdapter adapter = new RepoAdapter(mRepoList, this);
-        rvRepo.setAdapter(adapter);
-
         GithubService githubService = new Retrofit.Builder()
                 .baseUrl(GithubService.ENDPOINT)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -53,29 +48,35 @@ public class ResultActivity extends AppCompatActivity {
         githubService.listRepos("adrienbusin").enqueue(new Callback<List<Repo>>() {
             @Override
             public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
-                mRepoList = response.body();
+                afficherRepos(response.body());
             }
             public void onFailure(Call<List<Repo>> call, Throwable t) {
 
             }
         });
-
-        adapter = new RepoAdapter(mRepoList, this);
-        rvRepo.setAdapter(adapter);
-
-        githubService.searchRepos("picasso").enqueue(new Callback<List<Repo>>() {
+        githubService.searchRepos("picasso").enqueue(new Callback<Repos>() {
             @Override
-            public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
-                if (response.isSuccessful()){
-
-                }
+            public void onResponse(Call<Repos> call, Response<Repos> response) {
+                afficherRepos(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<Repo>> call, Throwable t) {
+            public void onFailure(Call<Repos> call, Throwable t) {
 
             }
         });
+
+        //RecyclerView rvRepos = (RecyclerView) findViewById(R.id.rvRepo);
+
     }
-
+    public void afficherRepos(Repos repos) {
+        //Toast.makeText(this,"nombre de dépots : "+repos.size(), Toast.LENGTH_SHORT).show();
+        RecyclerView rvRepos = (RecyclerView) findViewById(R.id.rvRepo);
+        RepoAdapter adapter = new RepoAdapter(repos,this);
+        rvRepos.setAdapter(adapter);
+        rvRepos.setLayoutManager(new LinearLayoutManager(this));
+    }
+    public void afficherRepos(List<Repo> repos) {
+        Toast.makeText(this,"nombre de dépots : "+repos.size(), Toast.LENGTH_SHORT).show();
+    }
 }

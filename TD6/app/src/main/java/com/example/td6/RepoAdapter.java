@@ -16,17 +16,12 @@ import retrofit2.Callback;
 
 public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.ViewHolder> {
 
-    private List<Repo> mRepo;
+    private Repos mRepo;
     private Context mContext;
 
-    public RepoAdapter(List<Repo> repo, Context context) {
+    public RepoAdapter(Repos repo, Context context) {
         mRepo = repo;
         mContext = context;
-    }
-
-    public void setRepoList(List<Repo> repoList) {
-        this.mRepo = repoList;
-        notifyDataSetChanged();
     }
 
     @NonNull
@@ -42,7 +37,7 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Repo repo = mRepo.get(position);
+        Repo repo = mRepo.getItems().get(position);
 
         TextView repo_id = holder.repo_id;
         repo_id.setText(repo.getId());
@@ -60,7 +55,7 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         if (mRepo != null){
-            return mRepo.size();
+            return mRepo.getItems().size();
         }
         return 0;
     }
