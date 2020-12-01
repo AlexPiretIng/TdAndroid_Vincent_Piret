@@ -23,7 +23,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ResultActivity extends AppCompatActivity {
 
     RecyclerView rvRepo;
-    Retrofit mRetrofit;
     private static final String TAG = "Repo";
     List<Repo> mRepoList = new ArrayList<>();
 
@@ -45,39 +44,35 @@ public class ResultActivity extends AppCompatActivity {
         RepoAdapter adapter = new RepoAdapter(mRepoList, this);
         rvRepo.setAdapter(adapter);
 
-        mRetrofit = new Retrofit.Builder()
+        GithubService githubService = new Retrofit.Builder()
                 .baseUrl(GithubService.ENDPOINT)
                 .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        GithubService githubService = mRetrofit.create(GithubService.class);
+                .build()
+                .create(GithubService.class);
 
         githubService.listRepos("adrienbusin").enqueue(new Callback<List<Repo>>() {
             @Override
             public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
-                //afficherRepos(response.body());
+                //ici invoquer viewholder
             }
             public void onFailure(Call<List<Repo>> call, Throwable t) {
 
             }
         });
 
-       githubService.searchRepos("7WondersDuel").enqueue(new Callback<List<Repo>>() {
-           @Override
-           public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
-               if (response.isSuccessful()){
+        githubService.searchRepos("picasso").enqueue(new Callback<List<Repo>>() {
+            @Override
+            public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
+                if (response.isSuccessful()){
 
-               }
-           }
+                }
+            }
 
-           @Override
-           public void onFailure(Call<List<Repo>> call, Throwable t) {
+            @Override
+            public void onFailure(Call<List<Repo>> call, Throwable t) {
 
-           }
-       });
+            }
+        });
     }
 
-    public void afficherRepos(List<Repo> repos) {
-        Toast.makeText(this,"nombre de dépots : "+repos.size(), Toast.LENGTH_SHORT).show();
-    }
 }
