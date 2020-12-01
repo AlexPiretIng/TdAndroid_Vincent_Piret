@@ -70,10 +70,10 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            repo_id = (TextView) itemView.findViewById(R.id.id_repo);
+            //repo_id = (TextView) itemView.findViewById(R.id.id_repo);
             repo_name = (TextView)itemView.findViewById(R.id.nom_repo);
-            repo_fullname = (TextView)itemView.findViewById(R.id.fullname_repo);
-            repo_url = (TextView)itemView.findViewById(R.id.url_repo);
+            //repo_fullname = (TextView)itemView.findViewById(R.id.fullname_repo);
+            //repo_url = (TextView)itemView.findViewById(R.id.url_repo);
         }
     }
 }

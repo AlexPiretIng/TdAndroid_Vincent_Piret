@@ -23,15 +23,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ResultActivity extends AppCompatActivity {
 
-    RecyclerView rvRepo;
-    LinearLayoutManager layoutManager;
+
     private static final String TAG = "Repo";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-
         String login = "";
         Intent intent = getIntent();
 
@@ -46,7 +44,7 @@ public class ResultActivity extends AppCompatActivity {
                 .create(GithubService.class);
 
 
-        githubService.searchRepos("AndroidEILCO").enqueue(new Callback<Repos>() {
+        githubService.searchRepos("picasso").enqueue(new Callback<Repos>() {
             @Override
             public void onResponse(Call<Repos> call, Response<Repos> response) {
                 afficherReposit(response.body());
@@ -54,12 +52,13 @@ public class ResultActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Repos> call, Throwable t) {
-
+                Log.e(TAG, call.toString());
             }
         });
+
+        RecyclerView rvRepos = (RecyclerView) findViewById(R.id.rvRepo);
     }
     public void afficherReposit(Repos repos) {
-        //Toast.makeText(this,"nombre de dépots : "+repos.size(), Toast.LENGTH_SHORT).show();
         RecyclerView rvRepos = (RecyclerView) findViewById(R.id.rvRepo);
         RepoAdapter adapter = new RepoAdapter(repos,this);
         rvRepos.setAdapter(adapter);
