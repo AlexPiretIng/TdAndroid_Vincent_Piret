@@ -53,12 +53,15 @@ public class ResultActivity extends AppCompatActivity {
         githubService.listRepos("adrienbusin").enqueue(new Callback<List<Repo>>() {
             @Override
             public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
-                //ici invoquer viewholder
+                mRepoList = response.body();
             }
             public void onFailure(Call<List<Repo>> call, Throwable t) {
 
             }
         });
+
+        adapter = new RepoAdapter(mRepoList, this);
+        rvRepo.setAdapter(adapter);
 
         githubService.searchRepos("picasso").enqueue(new Callback<List<Repo>>() {
             @Override
