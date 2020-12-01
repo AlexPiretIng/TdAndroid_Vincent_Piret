@@ -45,50 +45,20 @@ public class ResultActivity extends AppCompatActivity {
                 .build()
                 .create(GithubService.class);
 
-        githubService.listRepos("adrienbusin").enqueue(new Callback<List<Repo>>() {
-            @Override
-            public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
-<<<<<<< HEAD
-                afficherRepos(response.body());
-=======
-                mRepoList = response.body();
-                adapter.notifyDataSetChanged();
->>>>>>> master
-            }
-            public void onFailure(Call<List<Repo>> call, Throwable t) {
 
-            }
-        });
-<<<<<<< HEAD
-        githubService.searchRepos("picasso").enqueue(new Callback<Repos>() {
+        githubService.e.searchRepos("AndroidEILCO").enqueue(new Callback<Repos>() {
             @Override
             public void onResponse(Call<Repos> call, Response<Repos> response) {
-                afficherRepos(response.body());
+                afficherReposit(response.body());
             }
 
             @Override
             public void onFailure(Call<Repos> call, Throwable t) {
-=======
-
-        githubService.searchRepos("picasso").enqueue(new Callback<List<Repos>>() {
-            @Override
-            public void onResponse(Call<List<Repos>> call, Response<List<Repos>> response) {
-                if (response.isSuccessful()){
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Repos>> call, Throwable t) {
->>>>>>> master
-
+                
             }
         });
-
-        //RecyclerView rvRepos = (RecyclerView) findViewById(R.id.rvRepo);
-
     }
-    public void afficherRepos(Repos repos) {
+    public void afficherReposit(Repos repos) {
         //Toast.makeText(this,"nombre de dépots : "+repos.size(), Toast.LENGTH_SHORT).show();
         RecyclerView rvRepos = (RecyclerView) findViewById(R.id.rvRepo);
         RepoAdapter adapter = new RepoAdapter(repos,this);
