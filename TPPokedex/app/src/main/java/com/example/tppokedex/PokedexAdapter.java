@@ -19,6 +19,11 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.ViewHold
     public ArrayList<Pokemon> mPokemons;
     private Context mContext;
 
+    public void addPoke(ArrayList<Pokemon> listPokemon) {
+        mPokemons.addAll(listPokemon);
+        notifyDataSetChanged();
+    }
+    
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -51,10 +56,5 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.ViewHold
             super(itemView);
             mImageView = itemView.findViewById(R.id.image_pokemon);
         }
-    }
-
-    public void addPoke(ArrayList<Pokemon> listPokemon) {
-        mPokemons.addAll(listPokemon);
-        notifyDataSetChanged();
     }
 }
