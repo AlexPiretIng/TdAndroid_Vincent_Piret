@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.tppokedex.API.PokemonService;
 
@@ -20,11 +21,17 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private PokedexAdapter mPokedexAdapter;
+    Retrofit mRetrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mRetrofit = new Retrofit.Builder()
+                .baseUrl(PokemonService.ENDPOINT_POKEMON)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
         mRecyclerView = (RecyclerView)findViewById(R.id.rvPokemon);
         mPokedexAdapter = new PokedexAdapter();
@@ -36,18 +43,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void obtenirPokemon(int limit, int offset){
-        PokemonService pokedex = new Retrofit.Builder()
-                .baseUrl(PokemonService.ENDPOINT_POKEMON)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(PokemonService.class);
+        PokemonService service = mRetrofit.create(PokemonService.class);
+        Call<AllPokemon> pokemonRequestCall = service.getAllPokemon(limit, offset);
 
-        pokedex.getAllPokemon(limit,offset).enqueue(new Callback<AllPokemon>() {
+        pokemonRequestCall.enqueue(new Callback<AllPokemon>() {
             @Override
             public void onResponse(Call<AllPokemon> call, Response<AllPokemon> response) {
-                AllPokemon pokemonRequest = response.body();
-                ArrayList<Pokemon> listPokemon = pokemonRequest.getResults();
-                mPokedexAdapter.addPoke(listPokemon);
+                if (response.isSuccessful()){
+                    AllPokemon pokemonRequest = response.body();
+                    ArrayList<Pokemon> listPokemon = pokemonRequest.getResults();
+                    mPokedexAdapter.addPoke(listPokemon);
+                }else {
+
+                }
             }
 
             @Override
