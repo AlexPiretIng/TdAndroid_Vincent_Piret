@@ -30,6 +30,7 @@ public class ResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+
         String login = "";
         Intent intent = getIntent();
 
@@ -48,11 +49,11 @@ public class ResultActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Repos> call, Response<Repos> response) {
                 afficherReposit(response.body());
+                Log.e(TAG, response.toString());
             }
 
             @Override
             public void onFailure(Call<Repos> call, Throwable t) {
-                Log.e(TAG, call.toString());
             }
         });
 
@@ -60,11 +61,11 @@ public class ResultActivity extends AppCompatActivity {
     }
     public void afficherReposit(Repos repos) {
         RecyclerView rvRepos = (RecyclerView) findViewById(R.id.rvRepo);
-        RepoAdapter adapter = new RepoAdapter(repos,this);
+        RepoAdapter adapter = new RepoAdapter(repos,ResultActivity.this);
         rvRepos.setAdapter(adapter);
         rvRepos.setLayoutManager(new LinearLayoutManager(this));
     }
     public void afficherRepos(List<Repo> repos) {
-        Toast.makeText(this,"nombre de dépots : "+repos.size(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"nombre de dépots : "+ repos.size(), Toast.LENGTH_SHORT).show();
     }
 }
