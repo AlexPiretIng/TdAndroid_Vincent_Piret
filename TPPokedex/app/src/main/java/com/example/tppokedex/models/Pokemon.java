@@ -1,4 +1,4 @@
-package com.example.tppokedex;
+package com.example.tppokedex.models;
 
 public class Pokemon {
 
@@ -23,7 +23,8 @@ public class Pokemon {
     }
 
     public int getNumber() {
-        return number;
+        String[] split = url.split("/");
+        return Integer.parseInt(split[split.length-1]);
     }
 
     public void setNumber(int number) {

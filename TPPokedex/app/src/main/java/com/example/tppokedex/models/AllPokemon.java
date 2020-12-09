@@ -1,4 +1,4 @@
-package com.example.tppokedex;
+package com.example.tppokedex.models;
 
 import java.util.ArrayList;
 
