@@ -1,6 +1,7 @@
 package com.example.tppokedex;
 
 import android.content.Context;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,45 +18,47 @@ import java.util.ArrayList;
 
 public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.ViewHolder> {
 
-    public ArrayList<Pokemon> mPokemons;
-    private Context mContext;
+    private ArrayList<Pokemon> list;
 
-    public void addPoke(ArrayList<Pokemon> listPokemon) {
-        mPokemons.addAll(listPokemon);
-        notifyDataSetChanged();
+    public PokedexAdapter() {
+        this.list = new ArrayList<>();
     }
-    
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pokemon, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pokemon, parent,false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Pokemon pokemon = mPokemons.get(position);
+        Pokemon pokemon = list.get(position);
 
-        Glide.with(mContext)
+        Glide.with(MainActivity.context)
                 .load("https://pokeres.bastionbot.org/images/pokemon/" + pokemon.getNumber() + ".png")
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(holder.mImageView);
-
+                .into(holder.image_pokemon);
     }
 
     @Override
     public int getItemCount() {
-        return mPokemons.size();
+        return list.size();
+    }
+
+    public void addPoke(ArrayList<Pokemon> listPokemon) {
+        list.addAll(listPokemon);
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private ImageView mImageView;
+        private ImageView image_pokemon;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mImageView = itemView.findViewById(R.id.image_pokemon);
+            image_pokemon = (ImageView)itemView.findViewById(R.id.image_pokemon);
         }
     }
 }

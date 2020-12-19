@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class AllPokemon {
 
-    private ArrayList<Pokemon> listPoke;
+    private ArrayList<Pokemon> results;
 
     public ArrayList<Pokemon> getResults() {
-        return listPoke;
+        return results;
     }
 
     public void setResults(ArrayList<Pokemon> results) {
-        this.listPoke = results;
+        this.results = results;
     }
 }

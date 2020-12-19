@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.tppokedex.API.PokemonService;
 import com.example.tppokedex.models.AllPokemon;
@@ -20,42 +22,55 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView mRecyclerView;
+    private static final String TAG = "Pokedex";
+
+    private RecyclerView rvPoke;
     private PokedexAdapter mPokedexAdapter;
-    Retrofit mRetrofit;
+
+    Retrofit retrofit;
+
+    public static Context context;
+
+    private int offset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mRetrofit = new Retrofit.Builder()
-                .baseUrl(PokemonService.ENDPOINT_POKEMON)
+        context = getApplicationContext();
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl(PokemonService.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        mRecyclerView = (RecyclerView)findViewById(R.id.rvPokemon);
-        mPokedexAdapter = new PokedexAdapter();
-        mRecyclerView.setAdapter(mPokedexAdapter);
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
-        mRecyclerView.setLayoutManager(layoutManager);
+        offset = 0;
 
-        obtenirPokemon(20,0);
+        obtenirPokemon();
+
+        rvPoke = (RecyclerView)findViewById(R.id.rvPokemon);
+        mPokedexAdapter = new PokedexAdapter();
+        rvPoke.setAdapter(mPokedexAdapter);
+        rvPoke.setHasFixedSize(true);
+        GridLayoutManager layoutManager = new GridLayoutManager(this,3);
+        rvPoke.setLayoutManager(layoutManager);
     }
 
-    public void obtenirPokemon(int limit, int offset){
-        PokemonService service = mRetrofit.create(PokemonService.class);
-        Call<AllPokemon> pokemonRequestCall = service.getAllPokemon(limit, offset);
+    private void obtenirPokemon() {
+        PokemonService pokemonService = new Retrofit.Builder()
+                .baseUrl(PokemonService.URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(PokemonService.class);
 
-        pokemonRequestCall.enqueue(new Callback<AllPokemon>() {
+        pokemonService.getPokemon(9,0).enqueue(new Callback<AllPokemon>() {
             @Override
             public void onResponse(Call<AllPokemon> call, Response<AllPokemon> response) {
                 if (response.isSuccessful()){
-                    AllPokemon pokemonRequest = response.body();
-                    ArrayList<Pokemon> listPokemon = pokemonRequest.getResults();
-                    mPokedexAdapter.addPoke(listPokemon);
-                }else {
-
+                    AllPokemon pokemons = response.body();
+                    ArrayList<Pokemon> listPoke = pokemons.getResults();
+                    mPokedexAdapter.addPoke(listPoke);
                 }
             }
 

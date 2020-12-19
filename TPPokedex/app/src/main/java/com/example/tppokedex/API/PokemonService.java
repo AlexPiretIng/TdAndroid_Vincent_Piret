@@ -8,8 +8,9 @@ import retrofit2.http.Query;
 
 public interface PokemonService {
 
-    public static final String ENDPOINT_POKEMON = "https://pokeapi.co/api/v2/";
+    public static final String URL = "https://pokeapi.co/api/v2/";
 
     @GET("pokemon/")
-    Call<AllPokemon> getAllPokemon(@Query("limit") int limit, @Query("offset") int offset);
+    Call<AllPokemon> getPokemon(@Query("limit") int limit, @Query("offset") int offset);
+
 }
