@@ -19,9 +19,12 @@ import java.util.ArrayList;
 public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.ViewHolder> {
 
     private ArrayList<Pokemon> list;
+    private Context mContext;
 
-    public PokedexAdapter() {
+    public PokedexAdapter(Context context) {
         this.list = new ArrayList<>();
+        this.mContext = context;
+
     }
 
     @NonNull
@@ -35,7 +38,7 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Pokemon pokemon = list.get(position);
 
-        Glide.with(MainActivity.context)
+        Glide.with(mContext)
                 .load("https://pokeres.bastionbot.org/images/pokemon/" + pokemon.getNumber() + ".png")
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)

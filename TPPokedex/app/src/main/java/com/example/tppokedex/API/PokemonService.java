@@ -1,9 +1,11 @@
 package com.example.tppokedex.API;
 
 import com.example.tppokedex.models.AllPokemon;
+import com.example.tppokedex.models.DetailsPoke;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface PokemonService {
@@ -13,4 +15,6 @@ public interface PokemonService {
     @GET("pokemon/")
     Call<AllPokemon> getPokemon(@Query("limit") int limit, @Query("offset") int offset);
 
+    @GET("pokemon/{pokemonID}")
+    Call<DetailsPoke>getPokemonById(@Path("pokemonID") int id);
 }
