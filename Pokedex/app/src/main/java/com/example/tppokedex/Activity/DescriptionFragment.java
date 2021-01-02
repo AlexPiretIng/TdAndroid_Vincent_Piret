@@ -42,7 +42,6 @@ public class DescriptionFragment extends Fragment {
         String text = "test";
         View view = inflater.inflate(R.layout.fragment_description, container, false);
         TextView name = view.findViewById(R.id.name);
-        ImageView poke_img = view.findViewById(R.id.myPoke_img);
         name.setText(text);
 /*        Glide.with(this)
                 .load("https://pokeres.bastionbot.org/images/pokemon/1.png")

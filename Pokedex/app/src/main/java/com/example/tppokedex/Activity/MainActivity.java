@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Première génération");
-
+        
         list = (ArrayList<Pokemon>)getIntent().getSerializableExtra("gen1");
 
         rvPoke = (RecyclerView)findViewById(R.id.rvPokemon);
