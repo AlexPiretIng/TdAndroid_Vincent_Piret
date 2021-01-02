@@ -22,6 +22,16 @@
         android:paddingLeft="12dp"
         tools:ignore="VectorDrawableCompat" />
 
+    <ImageView
+        android:id="@+id/myPoke_img"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        android:scaleType="center"
+        android:translationZ="100dp"
+        app:layout_constraintBottom_toBottomOf="@id/header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/app_name"
         style="@style/TextStyle"

@@ -12,9 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TPPokedex">
-        <activity android:name=".Activity.LoadingScreen"></activity>
+        <activity android:name=".Activity.MainActivity"/>
         <activity android:name=".Activity.DetailActivity" android:theme="@style/Theme.Design.NoActionBar" />
-        <activity android:name=".Activity.MainActivity">
+        <activity android:name=".Activity.LoadingScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

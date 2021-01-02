@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.tppokedex.Activity.DescriptionFragment;
 import com.example.tppokedex.Activity.DetailActivity;
 import com.example.tppokedex.R;
 import com.example.tppokedex.Models.Pokemon;
@@ -47,6 +48,15 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.ViewHold
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.image_pokemon);
+
+        holder.image_pokemon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), DetailActivity.class);
+                intent.putExtra("pokemon", pokemon.getName());
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -59,23 +69,14 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.ViewHold
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView image_pokemon;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             image_pokemon = (ImageView) itemView.findViewById(R.id.image_pokemon);
-            image_pokemon.setOnClickListener(this);
         }
 
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()){
-                case R.id.image_pokemon:
-                    Intent i = new Intent(v.getContext(),DetailActivity.class);
-                    v.getContext().startActivity(i);
-            }
-        }
     }
 }

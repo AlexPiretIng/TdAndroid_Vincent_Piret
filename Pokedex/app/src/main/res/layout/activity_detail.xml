@@ -23,4 +23,5 @@
         app:itemIconTint="@drawable/bottom_navigation_colors"
         app:itemTextColor="@drawable/bottom_navigation_colors"
         android:layout_alignParentBottom="true"/>
+
 </RelativeLayout>
