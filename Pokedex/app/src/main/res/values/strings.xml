@@ -6,4 +6,6 @@
     <string name="bottom_nav_description">Description</string>
     <string name="bottom_nav_evolve">Evolution</string>
     <string name="Pokedex">Pokedex</string>
+    <string name="taille">Taille :</string>
+    <string name="poids">Poids :</string>
 </resources>

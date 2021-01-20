@@ -1,17 +1,20 @@
 package com.example.tppokedex.Models;
 
+import java.util.List;
+
 public class DetailsPoke {
 
-    private int id;
+    private String id;
     private String name;
-    private int height;
-    private int weight;
+    private String height;
+    private String weight;
+    private List<PokemonType> types;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -23,19 +26,27 @@ public class DetailsPoke {
         this.name = name;
     }
 
-    public int getHeight() {
+    public String getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(String height) {
         this.height = height;
     }
 
-    public int getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
+    }
+
+    public List<PokemonType> getType() {
+        return types;
+    }
+
+    public void setType(List<PokemonType> type) {
+        this.types = type;
     }
 }

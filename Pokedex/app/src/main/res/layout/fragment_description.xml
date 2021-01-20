@@ -67,6 +67,20 @@
         tools:text="Alex" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/taille_desc"
+        android:layout_width="70dp"
+        android:layout_height="59dp"
+        android:text="@string/taille"
+        android:layout_marginTop="28dp"
+        android:translationZ="100dp"
+        app:layout_constraintEnd_toEndOf="@id/taille"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintRight_toLeftOf="@id/taille"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/taille"
         android:layout_width="0dp"
         android:layout_height="59dp"
@@ -75,8 +89,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintRight_toLeftOf="@id/name"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/taille_desc"
         app:layout_constraintTop_toBottomOf="@id/name" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/weight_desc"
+        android:layout_width="70dp"
+        android:layout_height="59dp"
+        android:text="@string/poids"
+        android:layout_marginTop="2dp"
+        android:translationZ="100dp"
+        app:layout_constraintEnd_toEndOf="@id/weight"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintRight_toLeftOf="@id/weight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/taille_desc" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/weight"
+        android:layout_width="0dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="2dp"
+        android:translationZ="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@id/weight_desc"
+        app:layout_constraintStart_toEndOf="@id/weight_desc"
+        app:layout_constraintTop_toBottomOf="@id/taille" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/header"

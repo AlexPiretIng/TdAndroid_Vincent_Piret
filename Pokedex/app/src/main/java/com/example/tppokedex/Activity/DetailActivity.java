@@ -43,7 +43,6 @@ public class  DetailActivity extends AppCompatActivity {
 
         Bundle pokeIntent = getIntent().getExtras();
         String pokeName = pokeIntent.getString("pokemon");
-        Log.d("poke", pokeName);
 
         Bundle bundle = new Bundle();
         bundle.putString("poke", pokeName);
@@ -74,7 +73,7 @@ public class  DetailActivity extends AppCompatActivity {
                 }
             };
 
-    private void pokeDetail(String id) {
+/*    private void pokeDetail(String id) {
         PokemonService pokemonService = new Retrofit.Builder()
                 .baseUrl(PokemonService.URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -96,5 +95,5 @@ public class  DetailActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 }
