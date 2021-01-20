@@ -46,13 +46,10 @@ public class  DetailActivity extends AppCompatActivity {
 
         Bundle bundle = new Bundle();
         bundle.putString("poke", pokeName);
-        DescriptionFragment descriptionFragment = new DescriptionFragment();
-        descriptionFragment.setArguments(bundle);
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.addToBackStack(null);
-        transaction.replace(R.id.fragment_content, descriptionFragment);
-        transaction.commit();
 
+        fragment1.setArguments(bundle);
+        fm.beginTransaction().add(R.id.fragment_content, fragment1).commit();
+        fm.beginTransaction().add(R.id.fragment_content, fragment2, "2").hide(fragment2).commit();
         //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_content, new DescriptionFragment()).commit();
     }
 
@@ -64,15 +61,16 @@ public class  DetailActivity extends AppCompatActivity {
 
                     switch (item.getItemId()){
                         case R.id.nav_description:
-                            seletedFragment = new DescriptionFragment();
-                            break;
+                            fm.beginTransaction().hide(active).show(fragment1).commit();
+                            active=fragment1;
+                            return true;
                         case R.id.nav_evolve:
-                            seletedFragment = new EvolutionFragment();
-                            break;
+                            fm.beginTransaction().hide(active).show(fragment2).commit();
+                            active=fragment2;
+                            return true;
                     }
 
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_content, seletedFragment).commit();
-                    return true;
+                    return false;
                 }
             };
 
