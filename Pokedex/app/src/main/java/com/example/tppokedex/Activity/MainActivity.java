@@ -5,12 +5,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.tppokedex.API.PokemonService;
-import com.example.tppokedex.Adapter.GenerationAdapter;
 import com.example.tppokedex.Adapter.PokedexAdapter;
 import com.example.tppokedex.R;
 import com.example.tppokedex.Models.AllPokemon;
@@ -28,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rvPoke;
     private PokedexAdapter mPokedexAdapter;
-    private GenerationAdapter mgenerationAdapter;
     private ArrayList<Pokemon> list;
 
     @Override

@@ -32,6 +32,7 @@ public class  DetailActivity extends AppCompatActivity {
     final Fragment fragment2 = new EvolutionFragment();
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = fragment1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +51,6 @@ public class  DetailActivity extends AppCompatActivity {
         fragment1.setArguments(bundle);
         fm.beginTransaction().add(R.id.fragment_content, fragment1).commit();
         fm.beginTransaction().add(R.id.fragment_content, fragment2, "2").hide(fragment2).commit();
-        //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_content, new DescriptionFragment()).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener listener =
