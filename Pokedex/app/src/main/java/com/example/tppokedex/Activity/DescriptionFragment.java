@@ -39,7 +39,7 @@ public class DescriptionFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        String text = "test";
+        String text = this.getArguments().getString("poke");
         View view = inflater.inflate(R.layout.fragment_description, container, false);
         TextView name = view.findViewById(R.id.name);
         name.setText(text);

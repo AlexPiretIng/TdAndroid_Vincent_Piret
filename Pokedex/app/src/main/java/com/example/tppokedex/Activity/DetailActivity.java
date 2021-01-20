@@ -3,10 +3,10 @@ package com.example.tppokedex.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.ActionBar;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,7 +28,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class  DetailActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNav;
-
+    final Fragment fragment1 = new DescriptionFragment();
+    final Fragment fragment2 = new EvolutionFragment();
+    final FragmentManager fm = getSupportFragmentManager();
+    Fragment active = fragment1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +43,6 @@ public class  DetailActivity extends AppCompatActivity {
         Bundle pokeIntent = getIntent().getExtras();
         String pokeName = pokeIntent.getString("pokemon");
         Log.d("poke", pokeName);
-
 
         Bundle bundle = new Bundle();
         bundle.putString("poke", pokeName);
