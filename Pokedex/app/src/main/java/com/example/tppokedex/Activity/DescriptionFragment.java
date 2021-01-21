@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.airbnb.lottie.L;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.tppokedex.API.PokemonService;
@@ -46,6 +47,7 @@ public class DescriptionFragment extends Fragment {
     Map<String, String> mapType;
     private String first_type;
     private String second_type;
+    private String newId;
     private BottomNavigationView bottom;
 
     public DescriptionFragment() {
@@ -64,10 +66,11 @@ public class DescriptionFragment extends Fragment {
         // Inflate the layout for this fragment
 
         makeMapType();
+
         View view = inflater.inflate(R.layout.fragment_description, container, false);
         String id = this.getArguments().getString("id");
-        pokeDetail(id);
-/*        String type = this.getArguments().getString("type");
+        //pokeDetail(id);
+        String type = this.getArguments().getString("type");
         String index = this.getArguments().getString("number");
         String second_type = this.getArguments().getString("type2");
 
@@ -76,9 +79,24 @@ public class DescriptionFragment extends Fragment {
         type1 = (TextView)view.findViewById(R.id.type1);
         type2 = (TextView)view.findViewById(R.id.type2);
         number = (TextView)view.findViewById(R.id.index);
+        img = (ImageView)view.findViewById(R.id.myPoke_img);
+
+        if (String.valueOf(index).length() == 1){
+            newId = "#00" + index;
+        }else if (String.valueOf(index).length() == 2){
+            newId = "#0" + index;
+        }else if (String.valueOf(index).length() == 3){
+            newId = "#" + index;
+        }else{
+            newId = "#" + index;
+        }
 
         name.setText(id);
         back.setBackgroundColor(Color.parseColor(mapType.get(type)));
+        Glide.with(this)
+                .load("https://pokeres.bastionbot.org/images/pokemon/" + index +".png")
+                .centerCrop()
+                .into(img);
 
         type1.setText(type);
 
@@ -86,7 +104,7 @@ public class DescriptionFragment extends Fragment {
             type2.setText(second_type);
         }
 
-        number.setText(index);*/
+        number.setText(newId);
         return view;
 
     }

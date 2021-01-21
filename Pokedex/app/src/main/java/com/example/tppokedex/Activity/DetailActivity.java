@@ -124,7 +124,7 @@ public class  DetailActivity extends AppCompatActivity {
                     bundle.putString("id", detailsPoke.getName());
                     bundle.putString("type", first_type);
                     bundle.putString("type2", second_type);
-                    bundle.putString("number", newId);
+                    bundle.putString("number", detailsPoke.getId());
 
                     fragment1.setArguments(bundle);
                     fragment2.setArguments(bundle);
