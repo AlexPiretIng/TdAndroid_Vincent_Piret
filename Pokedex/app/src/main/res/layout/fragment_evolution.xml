@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@color/black">
 
-    <androidx.appcompat.widget.AppCompatImageView
+<!--    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/arrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,19 +16,19 @@
         android:paddingEnd="6dp"
         android:translationZ="100dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/header"
+        app:layout_constraintTop_toTopOf="@id/header_evolve"
         app:srcCompat="@drawable/ic_back"
         android:paddingRight="6dp"
         android:paddingLeft="12dp"
-        tools:ignore="VectorDrawableCompat" />
+        tools:ignore="VectorDrawableCompat" />-->
 
     <ImageView
-        android:id="@+id/myPoke_img"
+        android:id="@+id/myPoke_img_evolve"
         android:layout_width="190dp"
         android:layout_height="190dp"
         android:scaleType="center"
         android:translationZ="100dp"
-        app:layout_constraintBottom_toBottomOf="@id/header"
+        app:layout_constraintBottom_toBottomOf="@id/header_evolve"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -41,11 +41,11 @@
         android:textColor="@color/white"
         android:textSize="18sp"
         android:translationZ="100dp"
-        app:layout_constraintStart_toEndOf="@id/arrow"
-        app:layout_constraintTop_toTopOf="@id/arrow" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/index"
+        android:id="@+id/index_evolve"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
@@ -55,13 +55,13 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:translationZ="100dp"
-        app:layout_constraintEnd_toEndOf="@id/header"
-        app:layout_constraintTop_toTopOf="@id/header"
+        app:layout_constraintEnd_toEndOf="@id/header_evolve"
+        app:layout_constraintTop_toTopOf="@id/header_evolve"
         tools:text="#001"
         android:layout_marginLeft="12dp" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/name"
+        android:id="@+id/name_evolve"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -74,7 +74,7 @@
         android:translationZ="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintTop_toBottomOf="@id/header_evolve"
         tools:text="Alex" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -90,11 +90,11 @@
         android:text="kjhggthjrftgthg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintTop_toBottomOf="@id/name_evolve"
         tools:text="Alex" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/header"
+        android:id="@+id/header_evolve"
         android:layout_width="match_parent"
         android:layout_height="260dp"
         android:background="@color/red"

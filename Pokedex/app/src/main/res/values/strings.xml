@@ -8,4 +8,5 @@
     <string name="Pokedex">Pokedex</string>
     <string name="taille">Taille :</string>
     <string name="poids">Poids :</string>
+    <string name="type">Types :</string>
 </resources>
