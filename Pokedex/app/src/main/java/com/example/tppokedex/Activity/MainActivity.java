@@ -12,6 +12,7 @@ import com.example.tppokedex.Adapter.PokedexAdapter;
 import com.example.tppokedex.R;
 import com.example.tppokedex.Models.AllPokemon;
 import com.example.tppokedex.Models.Pokemon;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Première génération");
-        
+
         list = (ArrayList<Pokemon>)getIntent().getSerializableExtra("gen1");
 
         rvPoke = (RecyclerView)findViewById(R.id.rvPokemon);
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         mPokedexAdapter.addPoke(list);
     }
 
-    private void obtenirPokemon(int limit, int offset) {
+/*    private void obtenirPokemon(int limit, int offset) {
         PokemonService pokemonService = new Retrofit.Builder()
                 .baseUrl(PokemonService.URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -57,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<AllPokemon> call, Response<AllPokemon> response) {
                 if (response.isSuccessful()){
                     AllPokemon pokemons = response.body();
-                    /*list = pokemons.getResults();
-                    mPokedexAdapter.addPoke(list);*/
                 }
             }
 
@@ -67,5 +66,5 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 }
