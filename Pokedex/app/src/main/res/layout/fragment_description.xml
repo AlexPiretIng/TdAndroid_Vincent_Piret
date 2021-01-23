@@ -68,6 +68,22 @@
         tools:text="Alex" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="36dp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:translationZ="100dp"
+        android:text="kjhggthjrftgthg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        tools:text="Alex" />
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/taille_desc"
         android:layout_width="70dp"
         android:layout_height="59dp"
@@ -78,7 +94,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintRight_toLeftOf="@id/taille"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name" />
+        app:layout_constraintTop_toBottomOf="@id/description" />
 
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -91,7 +107,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintRight_toLeftOf="@id/name"
         app:layout_constraintStart_toEndOf="@id/taille_desc"
-        app:layout_constraintTop_toBottomOf="@id/name" />
+        app:layout_constraintTop_toBottomOf="@id/description" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/weight_desc"

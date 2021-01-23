@@ -77,22 +77,6 @@
         app:layout_constraintTop_toBottomOf="@id/header_evolve"
         tools:text="Alex" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="36dp"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:translationZ="100dp"
-        android:text="kjhggthjrftgthg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name_evolve"
-        tools:text="Alex" />
-
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/header_evolve"
         android:layout_width="match_parent"

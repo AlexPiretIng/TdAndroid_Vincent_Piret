@@ -2,6 +2,7 @@ package com.example.tppokedex.API;
 
 import com.example.tppokedex.Models.AllPokemon;
 import com.example.tppokedex.Models.DetailsPoke;
+import com.example.tppokedex.Models.PokemonSpecies;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -17,4 +18,7 @@ public interface PokemonService {
 
     @GET("pokemon/{pokemonID}")
     Call<DetailsPoke>getPokemonById(@Path("pokemonID") String id);
+
+    @GET("pokemon-species/{pokemonID}")
+    Call<PokemonSpecies>getPokemonSpecies(@Path("pokemonID") String id);
 }

@@ -13,10 +13,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.tppokedex.API.PokemonService;
+import com.example.tppokedex.Models.PokemonSpecies;
 import com.example.tppokedex.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EvolutionFragment extends Fragment {
 
@@ -54,6 +63,27 @@ public class EvolutionFragment extends Fragment {
 
         return view;
 
+    }
+
+    public void test(String id){
+        PokemonService pokemonService = new Retrofit.Builder()
+                .baseUrl(PokemonService.URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(PokemonService.class);
+
+        pokemonService.getPokemonSpecies(id).enqueue(new Callback<PokemonSpecies>() {
+            @Override
+            public void onResponse(Call<PokemonSpecies> call, Response<PokemonSpecies> response) {
+                PokemonSpecies test = response.body();
+
+            }
+
+            @Override
+            public void onFailure(Call<PokemonSpecies> call, Throwable t) {
+
+            }
+        });
     }
 
     private void makeMapType() {
