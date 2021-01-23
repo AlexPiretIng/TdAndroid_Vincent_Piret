@@ -14,12 +14,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.tppokedex.API.EvolutionService;
 import com.example.tppokedex.API.PokemonService;
+import com.example.tppokedex.Models.EvolutionPokemon;
 import com.example.tppokedex.Models.PokemonSpecies;
 import com.example.tppokedex.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -87,21 +90,21 @@ public class EvolutionFragment extends Fragment {
     }
 
     public void test(String id){
-        PokemonService pokemonService = new Retrofit.Builder()
-                .baseUrl(PokemonService.URL)
+        EvolutionService evolutionService = new Retrofit.Builder()
+                .baseUrl(EvolutionService.ENDPOINT)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(PokemonService.class);
+                .create(EvolutionService.class);
 
-        pokemonService.getPokemonSpecies(id).enqueue(new Callback<PokemonSpecies>() {
+        evolutionService.getEvolutions(id).enqueue(new Callback<List<EvolutionPokemon>>() {
             @Override
-            public void onResponse(Call<PokemonSpecies> call, Response<PokemonSpecies> response) {
-                PokemonSpecies test = response.body();
-
+            public void onResponse(Call<List<EvolutionPokemon>> call, Response<List<EvolutionPokemon>> response) {
+                EvolutionPokemon poke = response.body().get(0);
+                
             }
 
             @Override
-            public void onFailure(Call<PokemonSpecies> call, Throwable t) {
+            public void onFailure(Call<List<EvolutionPokemon>> call, Throwable t) {
 
             }
         });
