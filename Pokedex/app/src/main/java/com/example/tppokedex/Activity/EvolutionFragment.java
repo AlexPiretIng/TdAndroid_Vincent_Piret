@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.tppokedex.API.PokemonService;
 import com.example.tppokedex.Models.PokemonSpecies;
 import com.example.tppokedex.R;
@@ -33,6 +34,7 @@ public class EvolutionFragment extends Fragment {
     Map<String, String> mapType;
     private ImageView back;
     private TextView number;
+    private ImageView img;
 
     public EvolutionFragment() {
         // Required empty public constructor
@@ -51,16 +53,35 @@ public class EvolutionFragment extends Fragment {
         String id = this.getArguments().getString("id");
         String type = this.getArguments().getString("type");
         String index = this.getArguments().getString("number");
+        String newId;
 
         name = (TextView)view.findViewById(R.id.name_evolve);
         back =(ImageView)view.findViewById(R.id.header_evolve);
         number = (TextView)view.findViewById(R.id.index_evolve);
 
         makeMapType();
+        img = (ImageView)view.findViewById(R.id.myPoke_img_evolve);
+
+        if (String.valueOf(index).length() == 1){
+            newId = "#00" + index;
+        }else if (String.valueOf(index).length() == 2){
+            newId = "#0" + index;
+        }else if (String.valueOf(index).length() == 3){
+            newId = "#" + index;
+        }else{
+            newId = "#" + index;
+        }
+
         name.setText(id);
         back.setBackgroundColor(Color.parseColor(mapType.get(type)));
-        number.setText(index);
+        Glide.with(this)
+                .load("https://pokeres.bastionbot.org/images/pokemon/" + index +".png")
+                .centerCrop()
+                .into(img);
 
+        name.setText(id);
+        back.setBackgroundColor(Color.parseColor(mapType.get(type)));
+        number.setText(newId);
         return view;
 
     }
