@@ -1,5 +1,6 @@
 package com.example.tppokedex.Models;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -10,8 +11,12 @@ public class Pokemon implements Serializable {
 
     @PrimaryKey
     private int id;
+
+    @ColumnInfo(name = "name")
     private String name;
+    @ColumnInfo(name = "url")
     private String url;
+    @ColumnInfo(name = "number")
     private int number;
 
     public String getName() {

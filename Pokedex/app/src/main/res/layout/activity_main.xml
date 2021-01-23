@@ -26,53 +26,142 @@
         android:id="@+id/gen"
         android:gravity="center">
 
-        <ImageButton
-            android:id="@+id/gen1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/gen" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_margin="2dp">
+            <ImageButton
+                android:id="@+id/gen1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/gen" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gen1_title"/>
+        </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/gen2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/gen" />
 
-        <ImageButton
-            android:id="@+id/gen3"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/gen" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_margin="2dp">
+            <ImageButton
+                android:id="@+id/gen2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/gen" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gen2_title"/>
+        </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/gen4"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/gen" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_margin="2dp">
+            <ImageButton
+                android:id="@+id/gen3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/gen" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gen3_title"/>
+        </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/gen5"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/gen" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_margin="2dp">
+            <ImageButton
+                android:id="@+id/gen4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/gen" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gen4_title"/>
+        </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/gen6"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/gen" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_margin="2dp">
+            <ImageButton
+                android:id="@+id/gen5"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/gen" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gen5_title"/>
+        </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/gen7"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/gen" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_margin="2dp">
+            <ImageButton
+                android:id="@+id/gen6"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/gen" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gen6_title"/>
+        </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/gen8"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/gen" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_margin="2dp">
+            <ImageButton
+                android:id="@+id/gen7"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/gen" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gen7_title"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_margin="2dp">
+            <ImageButton
+                android:id="@+id/gen8"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/gen" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gen8_title"/>
+        </LinearLayout>
 
 
     </LinearLayout>

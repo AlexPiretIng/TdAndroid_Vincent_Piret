@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.ImageButton;
 
 import com.example.tppokedex.API.PokemonService;
 import com.example.tppokedex.Adapter.PokedexAdapter;
+import com.example.tppokedex.Dao.PokeDatabase;
 import com.example.tppokedex.R;
 import com.example.tppokedex.Models.AllPokemon;
 import com.example.tppokedex.Models.Pokemon;
@@ -23,6 +25,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,10 +40,15 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton gen6;
     private ImageButton gen7;
     private ImageButton gen8;
+    //private PokeDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //db = Room.databaseBuilder(getApplicationContext(),
+        //        PokeDatabase.class, "pokemon").allowMainThreadQueries().build();
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         gen1 = (ImageButton)findViewById(R.id.gen1);
@@ -120,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 toolbar.setTitle("Huitième génération");
             }
         });
+
     }
 
     private void obtenirPokemon(int limit, int offset) {
@@ -142,6 +151,8 @@ public class MainActivity extends AppCompatActivity {
                     GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),3);
                     rvPoke.setLayoutManager(layoutManager);
                     mPokedexAdapter.addPoke(list);
+
+                    //db.pokemonDao().insertAll(list);
                 }
             }
 
