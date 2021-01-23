@@ -95,8 +95,8 @@ public class  DetailActivity extends AppCompatActivity {
             public void onResponse(Call<DetailsPoke> call, Response<DetailsPoke> response) {
                 if (response.isSuccessful()){
                     DetailsPoke detailsPoke = response.body();
-                    Log.d("check", detailsPoke.getName());
-                    Log.d("check", String.valueOf(detailsPoke.getId()));
+                    //Log.d("check", detailsPoke.getName());
+                    //Log.d("check", String.valueOf(detailsPoke.getId()));
 
                     first_type = detailsPoke.getType().get(0).getType().getName();
                     if (detailsPoke.getType().size() == 1){

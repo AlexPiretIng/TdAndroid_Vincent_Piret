@@ -13,6 +13,6 @@ public interface EvolutionService {
     String ENDPOINT = "https://pokeapi.glitch.me/v1/";
     
     @GET("pokemon/{slug}")
-    Call<List<EvolutionPokemon>> getEvolutions(@Path("slug") String slug);
+    Call<EvolutionPokemon> getEvolutions(@Path("slug") String slug);
 
 }

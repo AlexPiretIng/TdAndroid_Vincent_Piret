@@ -85,6 +85,7 @@ public class EvolutionFragment extends Fragment {
         name.setText(id);
         back.setBackgroundColor(Color.parseColor(mapType.get(type)));
         number.setText(newId);
+        test(id);
         return view;
 
     }
@@ -96,15 +97,17 @@ public class EvolutionFragment extends Fragment {
                 .build()
                 .create(EvolutionService.class);
 
-        evolutionService.getEvolutions(id).enqueue(new Callback<List<EvolutionPokemon>>() {
+        evolutionService.getEvolutions(id).enqueue(new Callback<EvolutionPokemon>() {
             @Override
-            public void onResponse(Call<List<EvolutionPokemon>> call, Response<List<EvolutionPokemon>> response) {
-                EvolutionPokemon poke = response.body().get(0);
-                
+            public void onResponse(Call<EvolutionPokemon> call, Response<EvolutionPokemon> response) {
+                EvolutionPokemon pokemon = response.body();
+                List<String> evolve;
+                evolve = pokemon.getFamily().getEvolutionLine();
+                Log.d("evolve", evolve.get(0));
             }
 
             @Override
-            public void onFailure(Call<List<EvolutionPokemon>> call, Throwable t) {
+            public void onFailure(Call<EvolutionPokemon> call, Throwable t) {
 
             }
         });
