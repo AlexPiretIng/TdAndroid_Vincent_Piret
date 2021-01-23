@@ -32,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton gen1;
     private ImageButton gen2;
     private ImageButton gen3;
+    private ImageButton gen4;
+    private ImageButton gen5;
+    private ImageButton gen6;
+    private ImageButton gen7;
+    private ImageButton gen8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
         gen1 = (ImageButton)findViewById(R.id.gen1);
         gen2 = (ImageButton)findViewById(R.id.gen2);
         gen3 = (ImageButton)findViewById(R.id.gen3);
+        gen4 = (ImageButton)findViewById(R.id.gen4);
+        gen5 = (ImageButton)findViewById(R.id.gen5);
+        gen6 = (ImageButton)findViewById(R.id.gen6);
+        gen7 = (ImageButton)findViewById(R.id.gen7);
+        gen8 = (ImageButton)findViewById(R.id.gen8);
         toolbar.setTitle("Première génération");
 
 
@@ -73,6 +83,41 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 obtenirPokemon(386,251);
                 toolbar.setTitle("Troisième génération");
+            }
+        });
+        gen4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                obtenirPokemon(493,386);
+                toolbar.setTitle("Quatrième génération");
+            }
+        });
+        gen5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                obtenirPokemon(649,493);
+                toolbar.setTitle("Cinquième génération");
+            }
+        });
+        gen6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                obtenirPokemon(721,649);
+                toolbar.setTitle("Sixième génération");
+            }
+        });
+        gen7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                obtenirPokemon(898,721);
+                toolbar.setTitle("Septième génération");
+            }
+        });
+        gen8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                obtenirPokemon(386,251);
+                toolbar.setTitle("Huitième génération");
             }
         });
     }
