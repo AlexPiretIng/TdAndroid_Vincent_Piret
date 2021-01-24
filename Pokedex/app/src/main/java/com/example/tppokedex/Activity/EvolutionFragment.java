@@ -12,11 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.tppokedex.API.EvolutionService;
 import com.example.tppokedex.API.PokemonService;
+import com.example.tppokedex.Models.DetailsPoke;
 import com.example.tppokedex.Models.EvolutionPokemon;
+import com.example.tppokedex.Models.Pokemon;
 import com.example.tppokedex.Models.PokemonSpecies;
 import com.example.tppokedex.R;
 
@@ -38,6 +41,7 @@ public class EvolutionFragment extends Fragment {
     private ImageView back;
     private TextView number;
     private ImageView img;
+    String ev;
 
     public EvolutionFragment() {
         // Required empty public constructor
@@ -85,32 +89,57 @@ public class EvolutionFragment extends Fragment {
         name.setText(id);
         back.setBackgroundColor(Color.parseColor(mapType.get(type)));
         number.setText(newId);
-        test(id);
+        test(Integer.parseInt(index));
         return view;
 
     }
 
-    public void test(String id){
+    public void test(int id){
         EvolutionService evolutionService = new Retrofit.Builder()
                 .baseUrl(EvolutionService.ENDPOINT)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(EvolutionService.class);
 
-        evolutionService.getEvolutions(id).enqueue(new Callback<EvolutionPokemon>() {
+        evolutionService.listEvolutions(id).enqueue(new Callback<List<EvolutionPokemon>>() {
             @Override
-            public void onResponse(Call<EvolutionPokemon> call, Response<EvolutionPokemon> response) {
-                EvolutionPokemon pokemon = response.body();
-                List<String> evolve;
-                evolve = pokemon.getFamily().getEvolutionLine();
-                Log.d("evolve", evolve.get(0));
+            public void onResponse(Call<List<EvolutionPokemon>> call, Response<List<EvolutionPokemon>> response) {
+                List<String> st = response.body().get(0).getFamily().getEvolutionLine();
+                getEvolve(st);
             }
 
             @Override
-            public void onFailure(Call<EvolutionPokemon> call, Throwable t) {
+            public void onFailure(Call<List<EvolutionPokemon>> call, Throwable t) {
 
             }
         });
+    }
+
+    public void test1(String id){
+        PokemonService pokemonService = new Retrofit.Builder()
+                .baseUrl(PokemonService.URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(PokemonService.class);
+
+        pokemonService.getPokemonSpecies(id).enqueue(new Callback<PokemonSpecies>() {
+            @Override
+            public void onResponse(Call<PokemonSpecies> call, Response<PokemonSpecies> response) {
+                response.body().getFlavor_text_entries().get(0);
+            }
+
+            @Override
+            public void onFailure(Call<PokemonSpecies> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void getEvolve(List<String> evolve){
+        Toast.makeText(getContext(),"taille " + evolve.size(),Toast.LENGTH_LONG).show();
+        for (int i = 0;i < evolve.size();i++){
+            Log.d("test", evolve.get(i));
+        }
     }
 
     private void makeMapType() {

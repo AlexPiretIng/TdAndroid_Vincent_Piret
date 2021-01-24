@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         if(db.pokemonDao().getNumber()==0){
             db.clearAllTables();
             obtenirPokemon(898,0);
+            db.pokemonDao().insertAll();
         }
         list = (ArrayList<Pokemon>)getIntent().getSerializableExtra("gen1");
 

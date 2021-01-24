@@ -4,16 +4,16 @@ import java.util.List;
 
 public class PokemonSpecies {
 
-    private List<TextEntrie> flavorTextEntries;
+    private List<TextEntrie> flavor_text_entries;
     private List<Name> names;
     private List<Varietie> varieties;
 
-    public List<TextEntrie> getFlavorTextEntries() {
-        return flavorTextEntries;
+    public List<TextEntrie> getFlavor_text_entries() {
+        return flavor_text_entries;
     }
 
-    public void setFlavorTextEntries(List<TextEntrie> flavorTextEntries) {
-        this.flavorTextEntries = flavorTextEntries;
+    public void setFlavor_text_entries(List<TextEntrie> flavor_text_entries) {
+        this.flavor_text_entries = flavor_text_entries;
     }
 
     public List<Name> getNames() {

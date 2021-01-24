@@ -11,8 +11,8 @@ import retrofit2.http.Path;
 public interface EvolutionService {
 
     String ENDPOINT = "https://pokeapi.glitch.me/v1/";
-    
+
     @GET("pokemon/{slug}")
-    Call<EvolutionPokemon> getEvolutions(@Path("slug") String slug);
+    Call<List<EvolutionPokemon>> listEvolutions(@Path("slug") int idPokemon);
 
 }

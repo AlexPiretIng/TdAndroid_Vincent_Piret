@@ -3,6 +3,7 @@ package com.example.tppokedex.Dao;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -47,8 +48,8 @@ public interface PokemonDao {
     @Query("SELECT * FROM pokemon WHERE id>=809 AND id<898 ")
     List<Pokemon> getGen8();
 
-    @Insert
-    void insertAll(List<Pokemon> pokemons);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(List<Pokemon> pokemon);
 
     @Insert
     void insertOne(Pokemon pokemon);

@@ -77,6 +77,18 @@
         app:layout_constraintTop_toBottomOf="@id/header_evolve"
         tools:text="Alex" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleView_evolution"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name_evolve"
+        app:layout_constraintVertical_bias="0.0" />
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/header_evolve"
         android:layout_width="match_parent"

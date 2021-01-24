@@ -3,22 +3,22 @@ package com.example.tppokedex.Models;
 import java.util.List;
 
 public class TextEntrie {
-    List<Language> lang;
-    private String text;
+    List<Language> language;
+    private String flavor_text;
 
-    public List<Language> getLang() {
-        return lang;
+    public List<Language> getLanguage() {
+        return language;
     }
 
-    public void setLang(List<Language> lang) {
-        this.lang = lang;
+    public void setLanguage(List<Language> language) {
+        this.language = language;
     }
 
-    public String getText() {
-        return text;
+    public String getFlavor_text() {
+        return flavor_text;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setFlavor_text(String flavor_text) {
+        this.flavor_text = flavor_text;
     }
 }
