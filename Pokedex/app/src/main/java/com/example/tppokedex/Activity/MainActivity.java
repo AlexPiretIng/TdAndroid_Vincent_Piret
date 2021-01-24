@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -16,7 +17,6 @@ import com.example.tppokedex.Dao.PokeDatabase;
 import com.example.tppokedex.R;
 import com.example.tppokedex.Models.AllPokemon;
 import com.example.tppokedex.Models.Pokemon;
-import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
@@ -40,14 +40,12 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton gen6;
     private ImageButton gen7;
     private ImageButton gen8;
-    //private PokeDatabase db;
+    private PokeDatabase db;
 
+    @SuppressLint("WrongThread")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //db = Room.databaseBuilder(getApplicationContext(),
-        //        PokeDatabase.class, "pokemon").allowMainThreadQueries().build();
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -61,8 +59,16 @@ public class MainActivity extends AppCompatActivity {
         gen8 = (ImageButton)findViewById(R.id.gen8);
         toolbar.setTitle("Première génération");
 
+        db = Room.databaseBuilder(getApplicationContext(),
+                PokeDatabase.class, "pokemon").allowMainThreadQueries().build();
 
+        if(db.pokemonDao().getNumber()==0){
+            db.clearAllTables();
+            obtenirPokemon(898,0);
+        }
         list = (ArrayList<Pokemon>)getIntent().getSerializableExtra("gen1");
+
+
 
         rvPoke = (RecyclerView)findViewById(R.id.rvPokemon);
         mPokedexAdapter = new PokedexAdapter( this);
@@ -75,56 +81,72 @@ public class MainActivity extends AppCompatActivity {
         gen1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                obtenirPokemon(151,0);
+                //obtenirPokemon(151,0);
+                list = new ArrayList<Pokemon>(db.pokemonDao().getGen1());
+                afficherGenPokemon(list);
                 toolbar.setTitle("Première génération");
             }
         });
         gen2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                obtenirPokemon(251,151);
+                //obtenirPokemon(251,151);
+                list = new ArrayList<Pokemon>(db.pokemonDao().getGen2());
+                afficherGenPokemon(list);
                 toolbar.setTitle("Deuxième génération");
             }
         });
         gen3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                obtenirPokemon(386,251);
+                //obtenirPokemon(386,251);
+                list = new ArrayList<Pokemon>(db.pokemonDao().getGen3());
+                afficherGenPokemon(list);
                 toolbar.setTitle("Troisième génération");
             }
         });
         gen4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                obtenirPokemon(493,386);
+                //obtenirPokemon(493,386);
+                list = new ArrayList<Pokemon>(db.pokemonDao().getGen4());
+                afficherGenPokemon(list);
                 toolbar.setTitle("Quatrième génération");
             }
         });
         gen5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                obtenirPokemon(649,493);
+                //obtenirPokemon(649,493);
+                list = new ArrayList<Pokemon>(db.pokemonDao().getGen5());
+                afficherGenPokemon(list);
                 toolbar.setTitle("Cinquième génération");
             }
         });
         gen6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                obtenirPokemon(721,649);
+                //obtenirPokemon(721,649);
+                list = new ArrayList<Pokemon>(db.pokemonDao().getGen6());
+                afficherGenPokemon(list);
                 toolbar.setTitle("Sixième génération");
             }
         });
         gen7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                obtenirPokemon(898,721);
+                //obtenirPokemon(809,721);
+                list = new ArrayList<Pokemon>(db.pokemonDao().getGen7());
+                afficherGenPokemon(list);
                 toolbar.setTitle("Septième génération");
             }
         });
         gen8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                obtenirPokemon(386,251);
+                //obtenirPokemon(898,809);
+                list = new ArrayList<Pokemon>(db.pokemonDao().getGen8());
+                afficherGenPokemon(list);
                 toolbar.setTitle("Huitième génération");
             }
         });
@@ -151,8 +173,8 @@ public class MainActivity extends AppCompatActivity {
                     GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),3);
                     rvPoke.setLayoutManager(layoutManager);
                     mPokedexAdapter.addPoke(list);
-
-                    //db.pokemonDao().insertAll(list);
+                    db.pokemonDao().insertAll(list);
+                    db.close();
                 }
             }
 
@@ -161,5 +183,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+    private void afficherGenPokemon(ArrayList<Pokemon> listPoke){
+        rvPoke = (RecyclerView)findViewById(R.id.rvPokemon);
+        mPokedexAdapter = new PokedexAdapter( getApplicationContext());
+        rvPoke.setAdapter(mPokedexAdapter);
+        rvPoke.setHasFixedSize(true);
+        GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),3);
+        rvPoke.setLayoutManager(layoutManager);
+        mPokedexAdapter.addPoke(listPoke);
     }
 }
