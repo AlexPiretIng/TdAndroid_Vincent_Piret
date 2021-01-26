@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Entity(tableName = "pokemon")
 public class Pokemon implements Serializable {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     @ColumnInfo(name = "name")

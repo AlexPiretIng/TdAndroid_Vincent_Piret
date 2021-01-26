@@ -3,7 +3,6 @@ package com.example.tppokedex.Dao;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
-import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -24,10 +23,10 @@ public interface PokemonDao {
     @Query("SELECT count(*) FROM pokemon")
     int getNumber();
 
-    @Query("SELECT * FROM pokemon WHERE id>=0 AND id<151")
+    @Query("SELECT * FROM pokemon WHERE id>=0 AND id<=151")
     List<Pokemon> getGen1();
 
-    @Query("SELECT * FROM pokemon WHERE id>=151 AND id<251")
+    @Query("SELECT * FROM pokemon WHERE id>=151 AND id<=251")
     List<Pokemon> getGen2();
 
     @Query("SELECT * FROM pokemon WHERE id>=251 AND id<386")
@@ -48,7 +47,7 @@ public interface PokemonDao {
     @Query("SELECT * FROM pokemon WHERE id>=809 AND id<898 ")
     List<Pokemon> getGen8();
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     void insertAll(List<Pokemon> pokemon);
 
     @Insert

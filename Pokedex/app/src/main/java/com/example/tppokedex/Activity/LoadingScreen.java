@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.tppokedex.API.PokemonService;
+import com.example.tppokedex.Dao.PokeDatabase;
 import com.example.tppokedex.Models.AllPokemon;
 import com.example.tppokedex.Models.Pokemon;
 import com.example.tppokedex.R;
@@ -44,6 +45,7 @@ public class LoadingScreen extends AppCompatActivity {
                 if (response.isSuccessful()){
                     AllPokemon pokemons = response.body();
                     list = pokemons.getResults();
+                    insert(list);
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.putExtra("gen1", list);
                     startActivity(intent);
@@ -55,6 +57,13 @@ public class LoadingScreen extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void insert(ArrayList<Pokemon> pokemons){
+        PokeDatabase database = PokeDatabase.getInstance(this);
+        for (int i = 0; i<pokemons.size(); i++){
+            database.pokemonDao().insertOne(pokemons.get(i));
+        }
     }
 
     @Override

@@ -8,6 +8,7 @@ import androidx.room.Room;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -62,11 +63,7 @@ public class MainActivity extends AppCompatActivity {
         db = Room.databaseBuilder(getApplicationContext(),
                 PokeDatabase.class, "pokemon").allowMainThreadQueries().build();
 
-        if(db.pokemonDao().getNumber()==0){
-            db.clearAllTables();
-            obtenirPokemon(898,0);
-            db.pokemonDao().insertAll();
-        }
+
         list = (ArrayList<Pokemon>)getIntent().getSerializableExtra("gen1");
 
 
@@ -91,8 +88,7 @@ public class MainActivity extends AppCompatActivity {
         gen2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //obtenirPokemon(251,151);
-                list = new ArrayList<Pokemon>(db.pokemonDao().getGen2());
+                obtenirPokemon(251,151);
                 afficherGenPokemon(list);
                 toolbar.setTitle("Deuxième génération");
             }
@@ -100,8 +96,7 @@ public class MainActivity extends AppCompatActivity {
         gen3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //obtenirPokemon(386,251);
-                list = new ArrayList<Pokemon>(db.pokemonDao().getGen3());
+                obtenirPokemon(386,251);
                 afficherGenPokemon(list);
                 toolbar.setTitle("Troisième génération");
             }
@@ -109,8 +104,7 @@ public class MainActivity extends AppCompatActivity {
         gen4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //obtenirPokemon(493,386);
-                list = new ArrayList<Pokemon>(db.pokemonDao().getGen4());
+                obtenirPokemon(493,386);
                 afficherGenPokemon(list);
                 toolbar.setTitle("Quatrième génération");
             }
@@ -118,8 +112,7 @@ public class MainActivity extends AppCompatActivity {
         gen5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //obtenirPokemon(649,493);
-                list = new ArrayList<Pokemon>(db.pokemonDao().getGen5());
+                obtenirPokemon(649,493);
                 afficherGenPokemon(list);
                 toolbar.setTitle("Cinquième génération");
             }
@@ -127,8 +120,7 @@ public class MainActivity extends AppCompatActivity {
         gen6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //obtenirPokemon(721,649);
-                list = new ArrayList<Pokemon>(db.pokemonDao().getGen6());
+                obtenirPokemon(721,649);
                 afficherGenPokemon(list);
                 toolbar.setTitle("Sixième génération");
             }
@@ -136,8 +128,7 @@ public class MainActivity extends AppCompatActivity {
         gen7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //obtenirPokemon(809,721);
-                list = new ArrayList<Pokemon>(db.pokemonDao().getGen7());
+                obtenirPokemon(809,721);
                 afficherGenPokemon(list);
                 toolbar.setTitle("Septième génération");
             }
@@ -145,8 +136,7 @@ public class MainActivity extends AppCompatActivity {
         gen8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //obtenirPokemon(898,809);
-                list = new ArrayList<Pokemon>(db.pokemonDao().getGen8());
+                obtenirPokemon(898,809);
                 afficherGenPokemon(list);
                 toolbar.setTitle("Huitième génération");
             }
@@ -174,8 +164,7 @@ public class MainActivity extends AppCompatActivity {
                     GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),3);
                     rvPoke.setLayoutManager(layoutManager);
                     mPokedexAdapter.addPoke(list);
-                    db.pokemonDao().insertAll(list);
-                    db.close();
+                    insert(list);
                 }
             }
 
@@ -185,6 +174,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void insert(ArrayList<Pokemon> pokemons){
+        PokeDatabase database = PokeDatabase.getInstance(this);
+        for (int i = 0; i<pokemons.size(); i++){
+            database.pokemonDao().insertOne(pokemons.get(i));
+        }
+    }
+
     private void afficherGenPokemon(ArrayList<Pokemon> listPoke){
         rvPoke = (RecyclerView)findViewById(R.id.rvPokemon);
         mPokedexAdapter = new PokedexAdapter( getApplicationContext());
