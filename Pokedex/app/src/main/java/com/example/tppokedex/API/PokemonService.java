@@ -23,5 +23,5 @@ public interface PokemonService {
     Call<DetailsPoke>getPokemonById(@Path("pokemonID") String id);
 
     @GET("pokemon-species/{pokemonID}")
-    Call<PokemonSpecies>getPokemonSpecies(@Path("pokemonID") String id);
+    Call<PokemonSpecies>getPokemonSpecies(@Path("pokemonID") String pokemonID);
 }

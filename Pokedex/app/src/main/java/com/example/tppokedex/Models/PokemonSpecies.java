@@ -4,6 +4,16 @@ import java.util.List;
 
 public class PokemonSpecies {
 
+    int base_happiness;
+
+    public int getBase_happiness() {
+        return base_happiness;
+    }
+
+    public void setBase_happiness(int base_happiness) {
+        this.base_happiness = base_happiness;
+    }
+
     private List<TextEntrie> flavor_text_entries;
     private List<Name> names;
     private List<Varietie> varieties;

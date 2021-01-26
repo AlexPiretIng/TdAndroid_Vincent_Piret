@@ -1,9 +1,11 @@
 package com.example.tppokedex.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.tppokedex.API.PokemonService;
 import com.example.tppokedex.Dao.PokeDatabase;
@@ -23,12 +25,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LoadingScreen extends AppCompatActivity {
 
     private ArrayList<Pokemon> list;
+    private PokeDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading_screen);
-        //AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "database-name").build();
+        db = Room.databaseBuilder(getApplicationContext(),
+                PokeDatabase.class, "pokemon").allowMainThreadQueries().build();
         obtenirPokemon(151,0);
     }
 
@@ -45,6 +49,7 @@ public class LoadingScreen extends AppCompatActivity {
                 if (response.isSuccessful()){
                     AllPokemon pokemons = response.body();
                     list = pokemons.getResults();
+                    Log.d("list", String.valueOf(list.size()));
                     insert(list);
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.putExtra("gen1", list);
@@ -54,7 +59,7 @@ public class LoadingScreen extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<AllPokemon> call, Throwable t) {
-
+                Log.d("verif","echec");
             }
         });
     }

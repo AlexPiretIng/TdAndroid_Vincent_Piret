@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         gen4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                obtenirPokemon(493,386);
+                obtenirPokemon(494,386);
                 afficherGenPokemon(list);
                 toolbar.setTitle("Quatrième génération");
             }
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         gen5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                obtenirPokemon(649,493);
+                obtenirPokemon(649,494);
                 afficherGenPokemon(list);
                 toolbar.setTitle("Cinquième génération");
             }

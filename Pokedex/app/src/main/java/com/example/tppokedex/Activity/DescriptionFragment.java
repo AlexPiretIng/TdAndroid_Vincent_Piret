@@ -1,5 +1,6 @@
 package com.example.tppokedex.Activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,8 +17,10 @@ import android.widget.TextView;
 import com.airbnb.lottie.L;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.tppokedex.API.EvolutionService;
 import com.example.tppokedex.API.PokemonService;
 import com.example.tppokedex.Models.DetailsPoke;
+import com.example.tppokedex.Models.EvolutionPokemon;
 import com.example.tppokedex.Models.PokemonType;
 import com.example.tppokedex.Models.Type;
 import com.example.tppokedex.R;
@@ -47,6 +50,7 @@ public class DescriptionFragment extends Fragment {
     Map<String, String> mapType;
     private String first_type;
     private String second_type;
+    private TextView desc;
     private String newId;
     private BottomNavigationView bottom;
 
@@ -73,6 +77,11 @@ public class DescriptionFragment extends Fragment {
         String type = this.getArguments().getString("type");
         String index = this.getArguments().getString("number");
         String second_type = this.getArguments().getString("type2");
+        String poids = this.getArguments().getString("weight");
+        String taille = this.getArguments().getString("height");
+
+        poids = poids + " kg";
+        taille = taille + " m";
 
         name = (TextView)view.findViewById(R.id.name);
         back =(ImageView)view.findViewById(R.id.header);
@@ -80,6 +89,9 @@ public class DescriptionFragment extends Fragment {
         type2 = (TextView)view.findViewById(R.id.type2);
         number = (TextView)view.findViewById(R.id.index);
         img = (ImageView)view.findViewById(R.id.myPoke_img);
+        weight = (TextView)view.findViewById(R.id.weight);
+        height = (TextView)view.findViewById(R.id.taille);
+        desc = (TextView)view.findViewById(R.id.description);
 
         if (String.valueOf(index).length() == 1){
             newId = "#00" + index;
@@ -91,6 +103,8 @@ public class DescriptionFragment extends Fragment {
             newId = "#" + index;
         }
 
+        test(Integer.parseInt(index));
+
         name.setText(id);
         back.setBackgroundColor(Color.parseColor(mapType.get(type)));
         Glide.with(this)
@@ -99,6 +113,9 @@ public class DescriptionFragment extends Fragment {
                 .into(img);
 
         type1.setText(type);
+
+        weight.setText(poids);
+        height.setText(taille);
 
         if (second_type != null){
             type2.setText(second_type);
@@ -117,6 +134,7 @@ public class DescriptionFragment extends Fragment {
                 .create(PokemonService.class);
 
         pokemonService.getPokemonById(id).enqueue(new Callback<DetailsPoke>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(Call<DetailsPoke> call, Response<DetailsPoke> response) {
                 if (response.isSuccessful()){
@@ -174,6 +192,29 @@ public class DescriptionFragment extends Fragment {
 
             @Override
             public void onFailure(Call<DetailsPoke> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void test(int id){
+        EvolutionService evolutionService = new Retrofit.Builder()
+                .baseUrl(EvolutionService.ENDPOINT)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(EvolutionService.class);
+
+        evolutionService.listEvolutions(id).enqueue(new Callback<List<EvolutionPokemon>>() {
+            @Override
+            public void onResponse(Call<List<EvolutionPokemon>> call, Response<List<EvolutionPokemon>> response) {
+                String description = response.body().get(0).getDescription();
+                Log.d("desc" ,description);
+                desc = (TextView)getView().findViewById(R.id.description);
+                desc.setText(description);
+            }
+
+            @Override
+            public void onFailure(Call<List<EvolutionPokemon>> call, Throwable t) {
 
             }
         });

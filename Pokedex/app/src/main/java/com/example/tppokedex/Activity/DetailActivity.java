@@ -16,11 +16,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.tppokedex.API.PokemonService;
 import com.example.tppokedex.Models.AllPokemon;
 import com.example.tppokedex.Models.DetailsPoke;
+import com.example.tppokedex.Models.PokemonSpecies;
 import com.example.tppokedex.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -125,6 +127,8 @@ public class  DetailActivity extends AppCompatActivity {
                     bundle.putString("type", first_type);
                     bundle.putString("type2", second_type);
                     bundle.putString("number", detailsPoke.getId());
+                    bundle.putString("weight", detailsPoke.getWeight());
+                    bundle.putString("height",detailsPoke.getHeight());
 
                     fragment1.setArguments(bundle);
                     fragment2.setArguments(bundle);
@@ -139,6 +143,7 @@ public class  DetailActivity extends AppCompatActivity {
             }
         });
     }
+
     private void makeMapType() {
         mapType = new HashMap<String, String>();
 
