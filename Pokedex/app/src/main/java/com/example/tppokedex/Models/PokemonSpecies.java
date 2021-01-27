@@ -14,24 +14,24 @@ public class PokemonSpecies {
         this.base_happiness = base_happiness;
     }
 
-    private List<TextEntrie> flavor_text_entries;
-    private List<Name> names;
+    private List<FlavorTextEntries> flavor_text_entries;
+    private List<FlavorTextEntry> flavorTextEntries;
     private List<Varietie> varieties;
 
-    public List<TextEntrie> getFlavor_text_entries() {
+    public List<FlavorTextEntries> getFlavor_text_entries() {
         return flavor_text_entries;
     }
 
-    public void setFlavor_text_entries(List<TextEntrie> flavor_text_entries) {
+    public void setFlavor_text_entries(List<FlavorTextEntries> flavor_text_entries) {
         this.flavor_text_entries = flavor_text_entries;
     }
 
-    public List<Name> getNames() {
-        return names;
+    public List<FlavorTextEntry> getFlavorTextEntries() {
+        return flavorTextEntries;
     }
 
-    public void setNames(List<Name> names) {
-        this.names = names;
+    public void setFlavorTextEntries(List<FlavorTextEntry> flavorTextEntries) {
+        this.flavorTextEntries = flavorTextEntries;
     }
 
     public List<Varietie> getVarieties() {

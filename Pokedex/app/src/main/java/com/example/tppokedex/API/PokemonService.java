@@ -4,7 +4,7 @@ import androidx.room.Dao;
 
 import com.example.tppokedex.Models.AllPokemon;
 import com.example.tppokedex.Models.DetailsPoke;
-import com.example.tppokedex.Models.PokemonSpecies;
+import com.example.tppokedex.Models.FlavorTextEntries;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -22,6 +22,6 @@ public interface PokemonService {
     @GET("pokemon/{pokemonID}")
     Call<DetailsPoke>getPokemonById(@Path("pokemonID") String id);
 
-    @GET("pokemon-species/{pokemonID}")
-    Call<PokemonSpecies>getPokemonSpecies(@Path("pokemonID") String pokemonID);
+    @GET("pokemon-species/{id}")
+    Call<FlavorTextEntries> getFlav(@Path("id") int id);
 }

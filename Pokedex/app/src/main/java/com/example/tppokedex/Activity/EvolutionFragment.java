@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,15 +16,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.tppokedex.API.EvolutionService;
 import com.example.tppokedex.API.PokemonService;
-import com.example.tppokedex.Models.DetailsPoke;
 import com.example.tppokedex.Models.EvolutionPokemon;
-import com.example.tppokedex.Models.Name;
-import com.example.tppokedex.Models.Pokemon;
-import com.example.tppokedex.Models.PokemonSpecies;
-import com.example.tppokedex.Models.TextEntrie;
+import com.example.tppokedex.Models.FlavorTextEntries;
 import com.example.tppokedex.R;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +38,7 @@ public class EvolutionFragment extends Fragment {
     private TextView number;
     private ImageView img;
     String ev;
-    private List<TextEntrie> names;
+    private List<FlavorTextEntries> names;
 
     public EvolutionFragment() {
         // Required empty public constructor
@@ -64,8 +58,6 @@ public class EvolutionFragment extends Fragment {
         String type = this.getArguments().getString("type");
         String index = this.getArguments().getString("number");
         String newId;
-
-        test1();
 
         name = (TextView)view.findViewById(R.id.name_evolve);
         back =(ImageView)view.findViewById(R.id.header_evolve);
@@ -94,7 +86,7 @@ public class EvolutionFragment extends Fragment {
         name.setText(id);
         back.setBackgroundColor(Color.parseColor(mapType.get(type)));
         number.setText(newId);
-        test(Integer.parseInt(index));
+        //test(Integer.parseInt(index));
         Log.d("id_poke", id);
         return view;
 
@@ -117,28 +109,6 @@ public class EvolutionFragment extends Fragment {
             @Override
             public void onFailure(Call<List<EvolutionPokemon>> call, Throwable t) {
 
-            }
-        });
-    }
-
-    public void test1(){
-        PokemonService pokemonService = new Retrofit.Builder()
-                .baseUrl(PokemonService.URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(PokemonService.class);
-
-        pokemonService.getPokemonSpecies("1").enqueue(new Callback<PokemonSpecies>() {
-            @Override
-            public void onResponse(Call<PokemonSpecies> call, Response<PokemonSpecies> response) {
-                Toast.makeText(getContext(),"Reussi", Toast.LENGTH_LONG).show();
-                Log.d("id_poke", "reu");
-            }
-
-            @Override
-            public void onFailure(Call<PokemonSpecies> call, Throwable t) {
-                Log.d("id_poke", "echec");
-                Toast.makeText(getContext(),"Echec", Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Language {
     private String name;
-    List<Name> names;
+    private String url;
 
     public String getName() {
         return name;
@@ -14,11 +14,5 @@ public class Language {
         this.name = name;
     }
 
-    public List<Name> getNames() {
-        return names;
-    }
 
-    public void setNames(List<Name> names) {
-        this.names = names;
-    }
 }

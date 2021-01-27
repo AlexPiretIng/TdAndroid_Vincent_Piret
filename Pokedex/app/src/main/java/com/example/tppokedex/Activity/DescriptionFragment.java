@@ -21,6 +21,7 @@ import com.example.tppokedex.API.EvolutionService;
 import com.example.tppokedex.API.PokemonService;
 import com.example.tppokedex.Models.DetailsPoke;
 import com.example.tppokedex.Models.EvolutionPokemon;
+import com.example.tppokedex.Models.FlavorTextEntries;
 import com.example.tppokedex.Models.PokemonType;
 import com.example.tppokedex.Models.Type;
 import com.example.tppokedex.R;
@@ -103,8 +104,6 @@ public class DescriptionFragment extends Fragment {
             newId = "#" + index;
         }
 
-        test(Integer.parseInt(index));
-
         name.setText(id);
         back.setBackgroundColor(Color.parseColor(mapType.get(type)));
         Glide.with(this)
@@ -121,9 +120,34 @@ public class DescriptionFragment extends Fragment {
             type2.setText(second_type);
         }
 
+        test1(Integer.parseInt(index));
         number.setText(newId);
         return view;
 
+    }
+
+    public void test1(int id){
+        PokemonService pokemonService = new Retrofit.Builder()
+                .baseUrl(PokemonService.URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(PokemonService.class);
+
+        pokemonService.getFlav(id).enqueue(new Callback<FlavorTextEntries>() {
+            @Override
+            public void onResponse(Call<FlavorTextEntries> call, Response<FlavorTextEntries> response) {
+                for(int i = 0 ; i < response.body().getFlavorTextEntries().size() ; i++){
+                    if(response.body().getFlavorTextEntries().get(i).getLanguage().getName().equals("de"))
+                        desc = (TextView)getView().findViewById(R.id.description);
+                        desc.setText(response.body().getFlavorTextEntries().get(i).getFlavorText());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FlavorTextEntries> call, Throwable t) {
+
+            }
+        });
     }
 
     private void pokeDetail(String id) {
@@ -209,8 +233,6 @@ public class DescriptionFragment extends Fragment {
             public void onResponse(Call<List<EvolutionPokemon>> call, Response<List<EvolutionPokemon>> response) {
                 String description = response.body().get(0).getDescription();
                 Log.d("desc" ,description);
-                desc = (TextView)getView().findViewById(R.id.description);
-                desc.setText(description);
             }
 
             @Override
