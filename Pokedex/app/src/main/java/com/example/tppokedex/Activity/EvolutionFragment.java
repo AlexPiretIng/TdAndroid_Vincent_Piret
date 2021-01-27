@@ -83,9 +83,9 @@ public class EvolutionFragment extends Fragment {
                 .centerCrop()
                 .into(img);
 
-        name.setText(id);
         back.setBackgroundColor(Color.parseColor(mapType.get(type)));
         number.setText(newId);
+        pokeName(Integer.parseInt(index));
         //test(Integer.parseInt(index));
         Log.d("id_poke", id);
         return view;
@@ -108,6 +108,29 @@ public class EvolutionFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<EvolutionPokemon>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void pokeName(int id){
+        PokemonService pokemonService = new Retrofit.Builder()
+                .baseUrl(PokemonService.URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(PokemonService.class);
+
+        pokemonService.getFlav(id).enqueue(new Callback<FlavorTextEntries>() {
+            @Override
+            public void onResponse(Call<FlavorTextEntries> call, Response<FlavorTextEntries> response) {
+                for(int i = 0 ; i < response.body().getNames().size() ; i++){
+                    if(response.body().getNames().get(i).getLanguage().getName().equals("fr"))
+                        name.setText(response.body().getNames().get(i).getName());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FlavorTextEntries> call, Throwable t) {
 
             }
         });

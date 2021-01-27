@@ -1,35 +1,23 @@
 package com.example.tppokedex.Activity;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.airbnb.lottie.L;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.example.tppokedex.API.EvolutionService;
 import com.example.tppokedex.API.PokemonService;
-import com.example.tppokedex.Models.DetailsPoke;
-import com.example.tppokedex.Models.EvolutionPokemon;
 import com.example.tppokedex.Models.FlavorTextEntries;
-import com.example.tppokedex.Models.PokemonType;
-import com.example.tppokedex.Models.Type;
 import com.example.tppokedex.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -74,7 +62,6 @@ public class DescriptionFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_description, container, false);
         String id = this.getArguments().getString("id");
-        //pokeDetail(id);
         String type = this.getArguments().getString("type");
         String index = this.getArguments().getString("number");
         String second_type = this.getArguments().getString("type2");
@@ -119,13 +106,13 @@ public class DescriptionFragment extends Fragment {
             type2.setText(second_type);
         }
 
-        test1(Integer.parseInt(index));
+        pokeFrench(Integer.parseInt(index));
         number.setText(newId);
         return view;
 
     }
 
-    public void test1(int id){
+    public void pokeFrench(int id){
         PokemonService pokemonService = new Retrofit.Builder()
                 .baseUrl(PokemonService.URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -152,76 +139,6 @@ public class DescriptionFragment extends Fragment {
         });
     }
 
-  /*  private void pokeDetail(String id) {
-        PokemonService pokemonService = new Retrofit.Builder()
-                .baseUrl(PokemonService.URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(PokemonService.class);
-
-        pokemonService.getPokemonById(id).enqueue(new Callback<DetailsPoke>() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onResponse(Call<DetailsPoke> call, Response<DetailsPoke> response) {
-                if (response.isSuccessful()){
-                    DetailsPoke detailsPoke = response.body();
-                    Log.d("check", detailsPoke.getName());
-                    Log.d("check", String.valueOf(detailsPoke.getId()));
-
-                    name = (TextView)getView().findViewById(R.id.name);
-                    img = (ImageView)getView().findViewById(R.id.myPoke_img);
-                    number = (TextView)getView().findViewById(R.id.index);
-                    height = (TextView)getView().findViewById(R.id.taille);
-                    weight = (TextView)getView().findViewById(R.id.weight);
-                    type1 = (TextView)getView().findViewById(R.id.type1);
-                    type2 = (TextView)getView().findViewById(R.id.type2);
-                    back = (ImageView)getView().findViewById(R.id.header);
-                    bottom = (BottomNavigationView)getView().findViewById(R.id.bottom_navigation);
-
-                    if (detailsPoke.getType().size() == 1){
-                        first_type = detailsPoke.getType().get(0).getType().getName();
-                        type1.setText(first_type);
-                    }
-                    if (detailsPoke.getType().size() > 1){
-                        first_type = detailsPoke.getType().get(0).getType().getName();
-                        second_type = detailsPoke.getType().get(1).getType().getName();
-                        type1.setText(first_type);
-                        type2.setText(second_type);
-                    }
-
-
-                    back.setBackgroundColor(Color.parseColor(mapType.get(first_type)));
-                    //bottom.setBackgroundColor(Color.parseColor(mapType.get(first_type)));
-
-                    String id = detailsPoke.getId();
-                    String newId;
-
-                    if (String.valueOf(id).length() == 1){
-                        newId = "#00" + id;
-                    }else if (String.valueOf(id).length() == 2){
-                        newId = "#0" + id;
-                    }else if (String.valueOf(id).length() == 3){
-                        newId = "#" + id;
-                    }else{
-                        newId = "#" + id;
-                    }
-                    number.setText(newId);
-                    name.setText(detailsPoke.getName());
-                    height.setText(detailsPoke.getHeight() + " m");
-                    weight.setText(detailsPoke.getWeight() + " kg");
-                    Glide.with(getView())
-                            .load("https://pokeres.bastionbot.org/images/pokemon/" + detailsPoke.getId() +".png")
-                            .centerCrop()
-                            .into(img);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<DetailsPoke> call, Throwable t) {
-
-            }
-        });
-    }*/
 
     private void makeMapType() {
         mapType = new HashMap<String, String>();
