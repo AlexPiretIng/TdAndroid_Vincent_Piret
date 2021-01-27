@@ -104,7 +104,6 @@ public class DescriptionFragment extends Fragment {
             newId = "#" + index;
         }
 
-        name.setText(id);
         back.setBackgroundColor(Color.parseColor(mapType.get(type)));
         Glide.with(this)
                 .load("https://pokeres.bastionbot.org/images/pokemon/" + index +".png")
@@ -137,9 +136,12 @@ public class DescriptionFragment extends Fragment {
             @Override
             public void onResponse(Call<FlavorTextEntries> call, Response<FlavorTextEntries> response) {
                 for(int i = 0 ; i < response.body().getFlavorTextEntries().size() ; i++){
-                    if(response.body().getFlavorTextEntries().get(i).getLanguage().getName().equals("de"))
-                        desc = (TextView)getView().findViewById(R.id.description);
+                    if(response.body().getFlavorTextEntries().get(i).getLanguage().getName().equals("fr"))
                         desc.setText(response.body().getFlavorTextEntries().get(i).getFlavorText());
+                }
+                for(int i = 0 ; i < response.body().getNames().size() ; i++){
+                if(response.body().getNames().get(i).getLanguage().getName().equals("fr"))
+                    name.setText(response.body().getNames().get(i).getName());
                 }
             }
 
@@ -150,7 +152,7 @@ public class DescriptionFragment extends Fragment {
         });
     }
 
-    private void pokeDetail(String id) {
+  /*  private void pokeDetail(String id) {
         PokemonService pokemonService = new Retrofit.Builder()
                 .baseUrl(PokemonService.URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -219,28 +221,7 @@ public class DescriptionFragment extends Fragment {
 
             }
         });
-    }
-
-    public void test(int id){
-        EvolutionService evolutionService = new Retrofit.Builder()
-                .baseUrl(EvolutionService.ENDPOINT)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(EvolutionService.class);
-
-        evolutionService.listEvolutions(id).enqueue(new Callback<List<EvolutionPokemon>>() {
-            @Override
-            public void onResponse(Call<List<EvolutionPokemon>> call, Response<List<EvolutionPokemon>> response) {
-                String description = response.body().get(0).getDescription();
-                Log.d("desc" ,description);
-            }
-
-            @Override
-            public void onFailure(Call<List<EvolutionPokemon>> call, Throwable t) {
-
-            }
-        });
-    }
+    }*/
 
     private void makeMapType() {
         mapType = new HashMap<String, String>();
