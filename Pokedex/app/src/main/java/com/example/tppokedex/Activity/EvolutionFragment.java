@@ -16,9 +16,11 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.tppokedex.API.EvolutionService;
 import com.example.tppokedex.API.PokemonService;
+import com.example.tppokedex.Models.DetailsPoke;
 import com.example.tppokedex.Models.EvolutionPokemon;
 import com.example.tppokedex.Models.FlavorTextEntries;
 import com.example.tppokedex.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -37,6 +39,14 @@ public class EvolutionFragment extends Fragment {
     private ImageView back;
     private TextView number;
     private ImageView img;
+    private TextView firstEvolve;
+    private TextView secondEvolve;
+    private TextView thirdEvolve;
+    private ImageView imgFirstEvolve;
+    private ImageView imgSecondEvolve;
+    private ImageView imgThirdEvolve;
+    private String idEvolve;
+
     String ev;
     private List<FlavorTextEntries> names;
 
@@ -63,6 +73,13 @@ public class EvolutionFragment extends Fragment {
         back =(ImageView)view.findViewById(R.id.header_evolve);
         number = (TextView)view.findViewById(R.id.index_evolve);
 
+        firstEvolve = (TextView)view.findViewById(R.id.evolv_first);
+        secondEvolve = (TextView)view.findViewById(R.id.evolv_second);
+        thirdEvolve = (TextView)view.findViewById(R.id.evolv_third);
+        imgFirstEvolve =(ImageView)view.findViewById(R.id.evolv_first_img);
+        imgSecondEvolve =(ImageView)view.findViewById(R.id.evolv_second_img);
+        imgThirdEvolve =(ImageView)view.findViewById(R.id.evolv_third_img);
+
         makeMapType();
         img = (ImageView)view.findViewById(R.id.myPoke_img_evolve);
 
@@ -86,7 +103,7 @@ public class EvolutionFragment extends Fragment {
         back.setBackgroundColor(Color.parseColor(mapType.get(type)));
         number.setText(newId);
         pokeName(Integer.parseInt(index));
-        //test(Integer.parseInt(index));
+        test(Integer.parseInt(index));
         Log.d("id_poke", id);
         return view;
 
@@ -103,7 +120,10 @@ public class EvolutionFragment extends Fragment {
             @Override
             public void onResponse(Call<List<EvolutionPokemon>> call, Response<List<EvolutionPokemon>> response) {
                 List<String> st = response.body().get(0).getFamily().getEvolutionLine();
-                getEvolve(st);
+                if(id <810){
+                    getEvolve(st);
+                }
+
             }
 
             @Override
@@ -138,8 +158,76 @@ public class EvolutionFragment extends Fragment {
 
     public void getEvolve(List<String> evolve){
         Toast.makeText(getContext(),"taille " + evolve.size(),Toast.LENGTH_LONG).show();
+        PokemonService pokemonService = new Retrofit.Builder()
+                .baseUrl(PokemonService.URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(PokemonService.class);
         for (int i = 0;i < evolve.size();i++){
             Log.d("test", evolve.get(i));
+            if (i==0){
+                firstEvolve.setText(evolve.get(i));
+                pokemonService.getPokemonById(evolve.get(i).toLowerCase()).enqueue(new Callback<DetailsPoke>() {
+                    @Override
+                    public void onResponse(Call<DetailsPoke> call, Response<DetailsPoke> response) {
+                        if (response.isSuccessful()){
+                            DetailsPoke detailsPoke = response.body();
+                            idEvolve = detailsPoke.getId();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<DetailsPoke> call, Throwable t) {
+
+                    }
+                });
+                Glide.with(this)
+                        .load("https://pokeres.bastionbot.org/images/pokemon/" + idEvolve +".png")
+                        .centerCrop()
+                        .into(imgFirstEvolve);
+            }
+            if (i==1){
+                secondEvolve.setText(evolve.get(i).toLowerCase());
+                pokemonService.getPokemonById(evolve.get(i)).enqueue(new Callback<DetailsPoke>() {
+                    @Override
+                    public void onResponse(Call<DetailsPoke> call, Response<DetailsPoke> response) {
+                        if (response.isSuccessful()){
+                            DetailsPoke detailsPoke = response.body();
+                            idEvolve = detailsPoke.getId();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<DetailsPoke> call, Throwable t) {
+
+                    }
+                });
+                Glide.with(this)
+                        .load("https://pokeres.bastionbot.org/images/pokemon/" + idEvolve +".png")
+                        .centerCrop()
+                        .into(imgSecondEvolve);
+            }
+            if (i==2){
+                thirdEvolve.setText(evolve.get(i));
+                pokemonService.getPokemonById(evolve.get(i).toLowerCase()).enqueue(new Callback<DetailsPoke>() {
+                    @Override
+                    public void onResponse(Call<DetailsPoke> call, Response<DetailsPoke> response) {
+                        if (response.isSuccessful()){
+                            DetailsPoke detailsPoke = response.body();
+                            idEvolve = detailsPoke.getId();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<DetailsPoke> call, Throwable t) {
+
+                    }
+                });
+                Glide.with(this)
+                        .load("https://pokeres.bastionbot.org/images/pokemon/" + idEvolve +".png")
+                        .centerCrop()
+                        .into(imgThirdEvolve);
+            }
         }
     }
 

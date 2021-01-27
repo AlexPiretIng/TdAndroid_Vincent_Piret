@@ -17,4 +17,7 @@
     <string name="gen6_title">Gen. 6</string>
     <string name="gen7_title">Gen. 7</string>
     <string name="gen8_title">Gen. 8</string>
+    <string name="first_evolve_name" />
+    <string name="second_evolve_name" />
+    <string name="third_evolve_name" />
 </resources>
