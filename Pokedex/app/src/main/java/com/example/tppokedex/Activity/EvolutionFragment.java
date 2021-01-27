@@ -173,6 +173,11 @@ public class EvolutionFragment extends Fragment {
                         if (response.isSuccessful()){
                             DetailsPoke detailsPoke = response.body();
                             idEvolve = detailsPoke.getId();
+                            Log.d("test", detailsPoke.getId());
+                            Glide.with(getView())
+                                    .load("https://pokeres.bastionbot.org/images/pokemon/" + idEvolve +".png")
+                                    .centerCrop()
+                                    .into(imgFirstEvolve);
                         }
                     }
 
@@ -181,10 +186,7 @@ public class EvolutionFragment extends Fragment {
 
                     }
                 });
-                Glide.with(this)
-                        .load("https://pokeres.bastionbot.org/images/pokemon/" + idEvolve +".png")
-                        .centerCrop()
-                        .into(imgFirstEvolve);
+
             }
             if (i==1){
                 secondEvolve.setText(evolve.get(i).toLowerCase());
@@ -194,6 +196,10 @@ public class EvolutionFragment extends Fragment {
                         if (response.isSuccessful()){
                             DetailsPoke detailsPoke = response.body();
                             idEvolve = detailsPoke.getId();
+                            Glide.with(getView())
+                                    .load("https://pokeres.bastionbot.org/images/pokemon/" + idEvolve +".png")
+                                    .centerCrop()
+                                    .into(imgFirstEvolve);
                         }
                     }
 
@@ -202,10 +208,6 @@ public class EvolutionFragment extends Fragment {
 
                     }
                 });
-                Glide.with(this)
-                        .load("https://pokeres.bastionbot.org/images/pokemon/" + idEvolve +".png")
-                        .centerCrop()
-                        .into(imgSecondEvolve);
             }
             if (i==2){
                 thirdEvolve.setText(evolve.get(i));
@@ -215,6 +217,10 @@ public class EvolutionFragment extends Fragment {
                         if (response.isSuccessful()){
                             DetailsPoke detailsPoke = response.body();
                             idEvolve = detailsPoke.getId();
+                            Glide.with(getView())
+                                    .load("https://pokeres.bastionbot.org/images/pokemon/" + idEvolve +".png")
+                                    .centerCrop()
+                                    .into(imgFirstEvolve);
                         }
                     }
 
@@ -223,10 +229,6 @@ public class EvolutionFragment extends Fragment {
 
                     }
                 });
-                Glide.with(this)
-                        .load("https://pokeres.bastionbot.org/images/pokemon/" + idEvolve +".png")
-                        .centerCrop()
-                        .into(imgThirdEvolve);
             }
         }
     }
