@@ -199,7 +199,7 @@ public class EvolutionFragment extends Fragment {
                             Glide.with(getView())
                                     .load("https://pokeres.bastionbot.org/images/pokemon/" + idEvolve +".png")
                                     .centerCrop()
-                                    .into(imgFirstEvolve);
+                                    .into(imgSecondEvolve);
                         }
                     }
 
@@ -220,7 +220,7 @@ public class EvolutionFragment extends Fragment {
                             Glide.with(getView())
                                     .load("https://pokeres.bastionbot.org/images/pokemon/" + idEvolve +".png")
                                     .centerCrop()
-                                    .into(imgFirstEvolve);
+                                    .into(imgThirdEvolve);
                         }
                     }
 
