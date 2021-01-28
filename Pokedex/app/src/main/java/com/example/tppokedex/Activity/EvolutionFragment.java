@@ -166,7 +166,6 @@ public class EvolutionFragment extends Fragment {
         for (int i = 0;i < evolve.size();i++){
             Log.d("test", evolve.get(i));
             if (i==0){
-                firstEvolve.setText(evolve.get(i));
                 pokemonService.getPokemonById(evolve.get(i).toLowerCase()).enqueue(new Callback<DetailsPoke>() {
                     @Override
                     public void onResponse(Call<DetailsPoke> call, Response<DetailsPoke> response) {
@@ -178,6 +177,27 @@ public class EvolutionFragment extends Fragment {
                                     .load("https://pokeres.bastionbot.org/images/pokemon/" + idEvolve +".png")
                                     .centerCrop()
                                     .into(imgFirstEvolve);
+
+                            PokemonService pokemonServiceName = new Retrofit.Builder()
+                                    .baseUrl(PokemonService.URL)
+                                    .addConverterFactory(GsonConverterFactory.create())
+                                    .build()
+                                    .create(PokemonService.class);
+
+                            pokemonServiceName.getFlav(Integer.valueOf(idEvolve)).enqueue(new Callback<FlavorTextEntries>() {
+                                @Override
+                                public void onResponse(Call<FlavorTextEntries> call, Response<FlavorTextEntries> response) {
+                                    for(int i = 0 ; i < response.body().getNames().size() ; i++){
+                                        if(response.body().getNames().get(i).getLanguage().getName().equals("fr"))
+                                            firstEvolve.setText(response.body().getNames().get(i).getName());
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<FlavorTextEntries> call, Throwable t) {
+
+                                }
+                            });
                         }
                     }
 
@@ -186,20 +206,40 @@ public class EvolutionFragment extends Fragment {
 
                     }
                 });
-
             }
             if (i==1){
-                secondEvolve.setText(evolve.get(i).toLowerCase());
-                pokemonService.getPokemonById(evolve.get(i)).enqueue(new Callback<DetailsPoke>() {
+                pokemonService.getPokemonById(evolve.get(i).toLowerCase()).enqueue(new Callback<DetailsPoke>() {
                     @Override
                     public void onResponse(Call<DetailsPoke> call, Response<DetailsPoke> response) {
                         if (response.isSuccessful()){
                             DetailsPoke detailsPoke = response.body();
                             idEvolve = detailsPoke.getId();
+                            Log.d("test", detailsPoke.getId());
                             Glide.with(getView())
                                     .load("https://pokeres.bastionbot.org/images/pokemon/" + idEvolve +".png")
                                     .centerCrop()
                                     .into(imgSecondEvolve);
+
+                            PokemonService pokemonServiceName = new Retrofit.Builder()
+                                    .baseUrl(PokemonService.URL)
+                                    .addConverterFactory(GsonConverterFactory.create())
+                                    .build()
+                                    .create(PokemonService.class);
+
+                            pokemonServiceName.getFlav(Integer.valueOf(idEvolve)).enqueue(new Callback<FlavorTextEntries>() {
+                                @Override
+                                public void onResponse(Call<FlavorTextEntries> call, Response<FlavorTextEntries> response) {
+                                    for(int i = 0 ; i < response.body().getNames().size() ; i++){
+                                        if(response.body().getNames().get(i).getLanguage().getName().equals("fr"))
+                                            secondEvolve.setText(response.body().getNames().get(i).getName());
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<FlavorTextEntries> call, Throwable t) {
+
+                                }
+                            });
                         }
                     }
 
@@ -210,17 +250,38 @@ public class EvolutionFragment extends Fragment {
                 });
             }
             if (i==2){
-                thirdEvolve.setText(evolve.get(i));
                 pokemonService.getPokemonById(evolve.get(i).toLowerCase()).enqueue(new Callback<DetailsPoke>() {
                     @Override
                     public void onResponse(Call<DetailsPoke> call, Response<DetailsPoke> response) {
                         if (response.isSuccessful()){
                             DetailsPoke detailsPoke = response.body();
                             idEvolve = detailsPoke.getId();
+                            Log.d("test", detailsPoke.getId());
                             Glide.with(getView())
                                     .load("https://pokeres.bastionbot.org/images/pokemon/" + idEvolve +".png")
                                     .centerCrop()
                                     .into(imgThirdEvolve);
+
+                            PokemonService pokemonServiceName = new Retrofit.Builder()
+                                    .baseUrl(PokemonService.URL)
+                                    .addConverterFactory(GsonConverterFactory.create())
+                                    .build()
+                                    .create(PokemonService.class);
+
+                            pokemonServiceName.getFlav(Integer.valueOf(idEvolve)).enqueue(new Callback<FlavorTextEntries>() {
+                                @Override
+                                public void onResponse(Call<FlavorTextEntries> call, Response<FlavorTextEntries> response) {
+                                    for(int i = 0 ; i < response.body().getNames().size() ; i++){
+                                        if(response.body().getNames().get(i).getLanguage().getName().equals("fr"))
+                                            thirdEvolve.setText(response.body().getNames().get(i).getName());
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<FlavorTextEntries> call, Throwable t) {
+
+                                }
+                            });
                         }
                     }
 

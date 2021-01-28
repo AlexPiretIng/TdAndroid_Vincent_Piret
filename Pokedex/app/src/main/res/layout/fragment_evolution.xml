@@ -96,7 +96,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_evolve"
-        android:layout_marginTop="150dp"
+        app:layout_constraintLeft_toRightOf="@id/evolv_first_img"
+        android:layout_marginTop="125dp"
         android:layout_marginBottom="36dp"/>
     <ImageView
         android:id="@+id/evolv_second_img"
@@ -104,7 +105,7 @@
         android:layout_height="100dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_evolve"
-        android:layout_marginTop="175dp"/>
+        android:layout_marginTop="225dp"/>
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/evolv_second"
         android:layout_width="wrap_content"
@@ -116,7 +117,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_evolve"
-        android:layout_marginTop="225dp"
+        app:layout_constraintLeft_toRightOf="@id/evolv_second_img"
+        android:layout_marginTop="250dp"
         android:layout_marginBottom="36dp"/>
     <ImageView
         android:id="@+id/evolv_third_img"
@@ -124,7 +126,7 @@
         android:layout_height="100dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_evolve"
-        android:layout_marginTop="265dp" />
+        android:layout_marginTop="350dp" />
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/evolv_third"
         android:layout_width="wrap_content"
@@ -136,7 +138,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_evolve"
-        android:layout_marginTop="305dp"
+        app:layout_constraintLeft_toRightOf="@id/evolv_third_img"
+        android:layout_marginTop="375dp"
         android:layout_marginBottom="25dp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView_evolution"
