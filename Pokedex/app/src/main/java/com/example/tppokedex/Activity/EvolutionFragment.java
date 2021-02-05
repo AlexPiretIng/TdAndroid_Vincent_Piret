@@ -103,7 +103,7 @@ public class EvolutionFragment extends Fragment {
         back.setBackgroundColor(Color.parseColor(mapType.get(type)));
         number.setText(newId);
         pokeName(Integer.parseInt(index));
-        if (Integer.parseInt(index) <= 800){
+        if (Integer.parseInt(index) <= 810){
             Evolve(Integer.parseInt(index));
         }
 
@@ -160,7 +160,7 @@ public class EvolutionFragment extends Fragment {
     }
 
     public void getEvolve(List<String> evolve){
-        Toast.makeText(getContext(),"taille " + evolve.size(),Toast.LENGTH_LONG).show();
+       // Toast.makeText(getContext(),"taille " + evolve.size(),Toast.LENGTH_LONG).show();
         PokemonService pokemonService = new Retrofit.Builder()
                 .baseUrl(PokemonService.URL)
                 .addConverterFactory(GsonConverterFactory.create())
