@@ -103,13 +103,16 @@ public class EvolutionFragment extends Fragment {
         back.setBackgroundColor(Color.parseColor(mapType.get(type)));
         number.setText(newId);
         pokeName(Integer.parseInt(index));
-        test(Integer.parseInt(index));
+        if (Integer.parseInt(index) <= 800){
+            Evolve(Integer.parseInt(index));
+        }
+
         Log.d("id_poke", id);
         return view;
 
     }
 
-    public void test(int id){
+    public void Evolve(int id){
         EvolutionService evolutionService = new Retrofit.Builder()
                 .baseUrl(EvolutionService.ENDPOINT)
                 .addConverterFactory(GsonConverterFactory.create())

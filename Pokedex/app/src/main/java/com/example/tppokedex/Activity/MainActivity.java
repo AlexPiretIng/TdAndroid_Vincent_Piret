@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 obtenirPokemon(251,151);
-                afficherGenPokemon(list);
+                //afficherGenPokemon(list);
                 toolbar.setTitle("Deuxième génération");
             }
         });
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 obtenirPokemon(386,251);
-                afficherGenPokemon(list);
+                //afficherGenPokemon(list);
                 toolbar.setTitle("Troisième génération");
             }
         });
